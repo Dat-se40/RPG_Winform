@@ -13,7 +13,7 @@ namespace BTLT04
         private Graphics graphics;
         private Timer timer;
         private Player mainPlayer; 
-        private int targetFPS = 20; 
+        private int targetFPS = 30; 
         public Form1()
         {
             InitializeComponent();
@@ -33,9 +33,22 @@ namespace BTLT04
         }
 
         private void Update(object sender, EventArgs e)
-        { 
-            RenderGame();
+        {
             mainPlayer.Update();
+            RenderGame();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            mainPlayer.OnKeyDown(e.KeyCode); 
+            lbState.Text = e.KeyCode.ToString();
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+            mainPlayer.OnKeyUp(e.KeyCode); 
         }
 
         private void RenderGame()
@@ -43,7 +56,8 @@ namespace BTLT04
             using (Graphics g = Graphics.FromImage(backBuffer))
             {
                 g.Clear(Color.White);
-                mainPlayer.spriteRenderer.Draw(g);
+                mainPlayer.stateMachine.spriteRenderer.Draw(g);
+                lbFrameCount.Text = mainPlayer.stateMachine.spriteRenderer.currentFrame.ToString(); 
             }
 
             graphics.DrawImageUnscaled(backBuffer, 0, 0);

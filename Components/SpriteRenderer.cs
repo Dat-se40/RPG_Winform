@@ -8,24 +8,37 @@ namespace BTLT04.Components
 {
     public class SpriteRenderer
     {
-        private Bitmap spriteSheet;
-        private int frameCount;
-        private int currentFrame;
+        public int frameCount;
+        public int currentFrame;
         private int frameWidth;
         private int frameHeight;
 
         public Point Position { get; set; }
+        private Bitmap spriteSheet;
 
-        public SpriteRenderer(string spritePath, int frameCount)
+        public Bitmap SpriteSheet
         {
-            spriteSheet = new Bitmap(spritePath);
-            this.frameCount = frameCount;
-            currentFrame = 0;
-            frameWidth = spriteSheet.Width / frameCount;
-            frameHeight = spriteSheet.Height;
-            Position = new Point(100, 100);
+            get { return spriteSheet; }
+            set { 
+                spriteSheet = value;
+                SetUpStat();
+            }
         }
 
+
+        public SpriteRenderer(Bitmap image , int frameCount) 
+        {
+            this.frameCount = frameCount;
+            Position = new Point(100, 100);
+            SpriteSheet = image;
+        }
+
+        public void SetUpStat() 
+        {
+            currentFrame = 0;
+            frameWidth = SpriteSheet.Width / frameCount;
+            frameHeight = SpriteSheet.Height; 
+        }
         public void Update()
         {
             // Cập nhật frame
@@ -37,7 +50,7 @@ namespace BTLT04.Components
         {
             Rectangle srcRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
             Rectangle destRect = new Rectangle(Position.X, Position.Y, frameWidth, frameHeight);
-            g.DrawImage(spriteSheet, destRect, srcRect, GraphicsUnit.Pixel);
+            g.DrawImage(SpriteSheet, destRect, srcRect, GraphicsUnit.Pixel);
         }
     }
 }

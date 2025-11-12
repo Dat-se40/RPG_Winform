@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            lbState = new Label();
+            lbFrameCount = new Label();
+            SuspendLayout();
+            // 
+            // lbState
+            // 
+            lbState.AutoSize = true;
+            lbState.Location = new Point(67, 35);
+            lbState.Name = "lbState";
+            lbState.Size = new Size(38, 15);
+            lbState.TabIndex = 0;
+            lbState.Text = "label1";
+            // 
+            // lbFrameCount
+            // 
+            lbFrameCount.AutoSize = true;
+            lbFrameCount.Location = new Point(162, 35);
+            lbFrameCount.Name = "lbFrameCount";
+            lbFrameCount.Size = new Size(38, 15);
+            lbFrameCount.TabIndex = 1;
+            lbFrameCount.Text = "label1";
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(lbFrameCount);
+            Controls.Add(lbState);
+            Name = "Form1";
+            Text = "Go To Hell, Bitch!";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lbState;
+        private Label lbFrameCount;
     }
 }
