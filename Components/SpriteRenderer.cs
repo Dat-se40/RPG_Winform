@@ -1,56 +1,98 @@
-﻿using System;
+﻿#region SpriteRenderer.cs - Frame Animation with Delta Time
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Drawing;
+// Có lẽ sẽ xóa bớt mất cái ngoại lệ
 namespace BTLT04.Components
 {
+    /// <summary>
+    /// Quản lý sprite sheet: chia frame, cập nhật animation theo thời gian thực
+    /// </summary>
     public class SpriteRenderer
     {
-        public int frameCount;
-        public int currentFrame;
-        private int frameWidth;
-        private int frameHeight;
+        public int FrameCount { get; }
+        public int CurrentFrame { get; private set; } = 0;
+        public int FrameWidth { get; private set; }
+        public int FrameHeight { get; private set; }
 
-        public Point Position { get; set; }
-        private Bitmap spriteSheet;
+        private readonly Transform _transform; // Reference
+        private readonly Bitmap _spriteSheet;
+        private float _frameTimer = 0f;
+        private const float FrameDuration = 0.1f; // 10 FPS
 
-        public Bitmap SpriteSheet
+        public SpriteRenderer(Bitmap sheet, int frameCount, Transform transform)
         {
-            get { return spriteSheet; }
-            set { 
-                spriteSheet = value;
-                SetUpStat();
+            _spriteSheet = sheet ?? throw new ArgumentNullException(nameof(sheet));
+            if (frameCount <= 0) throw new ArgumentOutOfRangeException(nameof(frameCount));
+            _transform = transform ?? throw new ArgumentNullException(nameof(transform));
+
+            FrameCount = frameCount;
+            SetupFrames();
+        }
+
+        private void SetupFrames()
+        {
+            FrameWidth = _spriteSheet.Width / FrameCount;
+            FrameHeight = _spriteSheet.Height;
+            if (FrameWidth <= 0) throw new InvalidOperationException("Sprite sheet không hợp lệ.");
+        }
+
+        public void Update(float deltaTime)
+        {
+            _frameTimer += deltaTime;
+            if (_frameTimer >= FrameDuration)
+            {
+                CurrentFrame = (CurrentFrame + 1) % FrameCount;
+                _frameTimer -= FrameDuration;
             }
         }
 
-
-        public SpriteRenderer(Bitmap image , int frameCount) 
-        {
-            this.frameCount = frameCount;
-            Position = new Point(100, 100);
-            SpriteSheet = image;
-        }
-
-        public void SetUpStat() 
-        {
-            currentFrame = 0;
-            frameWidth = SpriteSheet.Width / frameCount;
-            frameHeight = SpriteSheet.Height; 
-        }
-        public void Update()
-        {
-            // Cập nhật frame
-            currentFrame = (currentFrame + 1) % frameCount;
-        }
-           
-
         public void Draw(Graphics g)
         {
-            Rectangle srcRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
-            Rectangle destRect = new Rectangle(Position.X, Position.Y, frameWidth, frameHeight);
-            g.DrawImage(SpriteSheet, destRect, srcRect, GraphicsUnit.Pixel);
+            if (g == null) return;
+            var pos = _transform.Position;
+            var src = new Rectangle(CurrentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
+            var dest = new Rectangle((int)pos.X, (int)pos.Y, FrameWidth, FrameHeight);
+            g.DrawImage(_spriteSheet, dest, src, GraphicsUnit.Pixel);
+        }
+    }
+
+    /// <summary>
+    /// Content Manager: cache bitmap, tránh tải lại, tự động dispose
+    /// </summary>
+    public static class Content
+    {
+        private static readonly Dictionary<string, Bitmap> Cache = new();
+
+        /// <summary>
+        /// Tải bitmap từ đường dẫn tương đối (dựa trên exe)
+        /// </summary>
+        public static Bitmap Load(string relativePath)
+        {
+            string fullPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\\" + relativePath);
+
+            if (Cache.TryGetValue(fullPath, out var bmp))
+                return bmp;
+
+            if (!System.IO.File.Exists(fullPath))
+                throw new System.IO.FileNotFoundException($"Không tìm thấy file: {relativePath}", fullPath);
+
+            bmp = new Bitmap(fullPath);
+            Cache[fullPath] = bmp;
+            return bmp;
+        }
+
+        /// <summary>
+        /// Giải phóng toàn bộ bitmap
+        /// </summary>
+        public static void UnloadAll()
+        {
+            foreach (var bmp in Cache.Values)
+            {
+                bmp.Dispose();
+            }
+            Cache.Clear();
         }
     }
 }
+#endregion

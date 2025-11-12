@@ -1,102 +1,99 @@
 ﻿using BTLT04.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BTLT04.Sources
+using Transform = BTLT04.Components.Transform; 
+internal class Player
 {
-    internal class Player
-    {
-        public StateMachine stateMachine;
-        private HashSet<Keys> pressedKeys = new HashSet<Keys>(); // Lưu các phím người chơi nhấn 
-        int speed = 10; 
-        public Player() 
-        {
-            this.stateMachine = new StateMachine();
-            stateMachine.AddState("Idle", "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Idle.png", 6);
-            stateMachine.AddState("Walk", "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Walk.png", 7);
-            stateMachine.AddState("Attack2", "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_2.png", 4);
-            stateMachine.ChangeState("Idle"); // Mặc định đứng yên
-        }
-        public void Update() 
-        {
-            Move();
-            stateMachine.Update();
-        }
-        public void OnKeyUp(Keys key)
-        {
-            pressedKeys.Remove(key);
-        }
-        public void OnKeyDown(Keys key)
-        {
-            pressedKeys.Add(key);
-        }
+    public StateMachine StateMachine { get; }
+    public Transform Transform { get; } = new Transform(); // MỚI
+    private readonly HashSet<Keys> _pressedKeys = new();
+    private const float Speed = 180f; // pixel/giây
 
-        public void Move()
-        {
-            var pos = new Point(stateMachine.SpritePostion.X, stateMachine.SpritePostion.Y); // Copy giá trị
+    private Rectangle _playArea;
 
-            if (pressedKeys.Contains(Keys.W)) pos.Y -= speed; 
-            if (pressedKeys.Contains(Keys.S)) pos.Y += speed;
-            if (pressedKeys.Contains(Keys.A)) pos.X -= speed;
-            if (pressedKeys.Contains(Keys.D)) pos.X += speed;
-          
-            if (stateMachine.SpritePostion != pos)
-            {
-                stateMachine.ChangeState("Walk");
-                stateMachine.SpritePostion = pos;
-            }
-            else
-            {
-                stateMachine.ChangeState("Idle");
-            }
-        }
-    }
-    internal class StateMachine
+    public Player(Rectangle playArea)
     {
-        public SpriteRenderer spriteRenderer;
-        private SpriteRenderer prevSpriteRenderer; 
-        private Dictionary<string, KeyValuePair<Bitmap,int>> states;
-        public Point SpritePostion
-        {
-            get { return spriteRenderer.Position; }
-            set { spriteRenderer.Position  = value; }
-        }
-        public StateMachine() 
-        {
-            states = new Dictionary<string, KeyValuePair<Bitmap, int>>() ;
-            spriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1);
-            prevSpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1);
-        }
-        // Set FrameCount truoc roi toi Bit map ; 
-        public void ChangeState(string name) 
-        {
-           if (states.ContainsKey(name)) 
-           {
-                var newImage = states[name].Key; 
-                
-                if (newImage != prevSpriteRenderer.SpriteSheet) 
-                {
-                    prevSpriteRenderer = spriteRenderer;
-                    spriteRenderer.frameCount = states[name].Value;
-                    spriteRenderer.SpriteSheet = newImage;
-                }
-           }
-        }
-        public void Update() 
-        {
-            spriteRenderer.Update(); 
-        }   
-        public void AddState(string name, string path, int frameCount)
-        {
-            if (!states.ContainsKey(name))
-            {
-                var pair = new KeyValuePair<Bitmap, int>(new Bitmap(path), frameCount); 
-                states.Add(name, pair);
-            } 
-        }
-      
+        _playArea = playArea;
+        StateMachine = new StateMachine(Transform); // Truyền Transform vào
+
+        StateMachine.AddState("Idle", @"Sources\Player\Idle.png", 6);
+        StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7);
+        StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
+        StateMachine.ChangeState("Idle");
     }
+
+    public void Update(double deltaTime)
+    {
+        float dt = (float)deltaTime;
+        HandleInput(dt);
+        UpdateState();
+        Transform.Update(dt); // Tự động di chuyển theo velocity
+        ClampToBounds();
+        StateMachine.Update(dt);
+    }
+
+    private void HandleInput(float dt)
+    {
+        var vel = PointF.Empty;
+        if (_pressedKeys.Contains(Keys.W)) vel.Y -= Speed;
+        if (_pressedKeys.Contains(Keys.S)) vel.Y += Speed;
+        if (_pressedKeys.Contains(Keys.A)) vel.X -= Speed;
+        if (_pressedKeys.Contains(Keys.D)) vel.X += Speed;
+
+        Transform.Velocity = vel; // Gán vận tốc
+    }
+
+    private void ClampToBounds()
+    {
+        var renderer = StateMachine.SpriteRenderer;
+        int w = renderer.FrameWidth, h = renderer.FrameHeight;
+        var pos = Transform.Position;
+
+        pos.X = Math.Max(_playArea.X, Math.Min(_playArea.Right - w, pos.X));
+        pos.Y = Math.Max(_playArea.Y, Math.Min(_playArea.Bottom - h, pos.Y));
+
+        Transform.Position = pos;
+        Transform.Velocity = PointF.Empty; // Dừng nếu chạm biên
+    }
+
+    private void UpdateState()
+    {
+        StateMachine.ChangeState(Transform.Velocity.IsEmpty ? "Idle" : "Walk");
+    }
+
+    // Input
+    public void OnKeyDown(Keys key) => _pressedKeys.Add(key);
+    public void OnKeyUp(Keys key) => _pressedKeys.Remove(key);
+
+    public void Draw(Graphics g) => StateMachine.SpriteRenderer.Draw(g);
+    public void UpdatePlayArea(Rectangle area) => _playArea = area;
+}
+
+// === StateMachine cập nhật ===
+internal class StateMachine
+{
+    public SpriteRenderer SpriteRenderer { get; private set; }
+    private readonly Transform _transform; // Giữ reference
+    private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
+    private string _currentState = "";
+
+    public StateMachine(Transform transform)
+    {
+        _transform = transform;
+        SpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1, transform);
+    }
+
+    public void AddState(string name, string path, int frameCount)
+    {
+        if (_states.ContainsKey(name)) return;
+        _states[name] = (Content.Load(path), frameCount);
+    }
+
+    public void ChangeState(string name)
+    {
+        if (_currentState == name || !_states.ContainsKey(name)) return;
+        var (sheet, count) = _states[name];
+        SpriteRenderer = new SpriteRenderer(sheet, count, _transform);
+        _currentState = name;
+    }
+
+    public void Update(float dt) => SpriteRenderer.Update(dt);
 }
