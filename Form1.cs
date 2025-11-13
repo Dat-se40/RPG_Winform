@@ -1,5 +1,6 @@
 ﻿#region Form1.cs - Game Main Loop & Rendering
 using BTLT04.Components;
+using BTLT04.Sources;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -23,7 +24,7 @@ namespace BTLT04
         // Game objects
         private Player _mainPlayer;
         private Timer _gameTimer;
-
+        private Tower _rmTower; 
         // Giới hạn vùng chơi (trừ viền sprite)
         private Rectangle PlayArea => ClientRectangle;
 
@@ -52,7 +53,9 @@ namespace BTLT04
 
             // Khởi tạo nhân vật với vùng chơi
             _mainPlayer = new Player(PlayArea);
-
+            _rmTower = new Tower();
+            _rmTower.Transform.Position = new PointF(PlayArea.X, PlayArea.Y + PlayArea.Height/2);
+            
             // Timer chạy liên tục (interval nhỏ nhất → chính xác hơn)
             _gameTimer = new Timer { Interval = 1 };
             _gameTimer.Tick += GameLoop;
@@ -76,6 +79,7 @@ namespace BTLT04
             while (_accumulator >= TargetFrameTimeMs)
             {
                 _mainPlayer.Update(TargetFrameTimeMs / 1000.0);
+                _rmTower.Update(TargetFrameTimeMs / 1000.0);
                 _accumulator -= TargetFrameTimeMs;
             }
             RenderFrame();
@@ -91,10 +95,7 @@ namespace BTLT04
             {
                 g.Clear(Color.CornflowerBlue); // nền
                 _mainPlayer.Draw(g);
-
-                // [Tùy chọn] Vẽ debug info
-                // g.DrawString($"FPS: ~{1000 / _stopwatch.Elapsed.TotalMilliseconds:F1}", 
-                //              new Font("Consolas", 10), Brushes.White, 10, 10);
+                _rmTower.Draw(g);
             }
         }
 

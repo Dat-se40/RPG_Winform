@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\third\\M\\IT008\\BTLT04\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|D:\\third\\M\\IT008\\BTLT04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|D:\\third\\M\\IT008\\BTLT04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\projectile\\playerattack2prj.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
@@ -58,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "SpriteRenderer.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\SpriteRenderer.cs",
               "RelativeDocumentMoniker": "Components\\SpriteRenderer.cs",
@@ -85,8 +85,7 @@
               "ViewState": "AgIAACkAAAAAAAAAAAASwDEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T16:05:43.854Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -106,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeDocumentMoniker": "Sources\\Player.cs",
@@ -114,31 +113,30 @@
               "RelativeToolTip": "Sources\\Player.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T16:15:05.46Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T16:15:05.46Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowCMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T16:01:31.242Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Transform.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
               "RelativeDocumentMoniker": "Components\\Transform.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
               "RelativeToolTip": "Components\\Transform.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T15:52:29.333Z",
               "EditorCaption": ""
@@ -167,14 +165,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T14:47:07.852Z"
+              "WhenOpened": "2025-11-11T14:47:07.852Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -190,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
