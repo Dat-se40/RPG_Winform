@@ -5,7 +5,9 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using BTLT04.Sources;
 using Timer = System.Windows.Forms.Timer;
+using System.Security.Cryptography;
 
 namespace BTLT04
 {
@@ -23,15 +25,18 @@ namespace BTLT04
 
         // Game objects
         private Player _mainPlayer;
+        private ZombieSpawner _zombieSpawner;
         private Timer _gameTimer;
         private Tower _rmTower; 
         // Giới hạn vùng chơi (trừ viền sprite)
         private Rectangle PlayArea => ClientRectangle;
-
+        // Nút hoạt động
+        private bool _playing = true;
         public Form1()
         {
             InitializeComponent();
             InitGame();
+            this.KeyPreview = true;
         }
 
         /// <summary>
@@ -53,6 +58,9 @@ namespace BTLT04
 
             // Khởi tạo nhân vật với vùng chơi
             _mainPlayer = new Player(PlayArea);
+            // Khởi tạo zombie
+            _zombieSpawner = new ZombieSpawner(PlayArea);
+
             _rmTower = new Tower();
             _rmTower.Transform.Position = new PointF(PlayArea.X, PlayArea.Y + PlayArea.Height/2);
             
@@ -70,6 +78,7 @@ namespace BTLT04
         /// </summary>
         private void GameLoop(object sender, EventArgs e)
         {
+            if (!_playing) return; 
             // Tính delta time (ms)
             double deltaMs = _stopwatch.Elapsed.TotalMilliseconds;
             _stopwatch.Restart();
@@ -78,12 +87,55 @@ namespace BTLT04
             // Cập nhật logic với fixed timestep (tránh giật lag)
             while (_accumulator >= TargetFrameTimeMs)
             {
-                _mainPlayer.Update(TargetFrameTimeMs / 1000.0);
-                _rmTower.Update(TargetFrameTimeMs / 1000.0);
+                double dt = TargetFrameTimeMs / 1000.0;
+                _mainPlayer.Update(dt);
+                _zombieSpawner.Update((float)dt);
+                CheckCollisions();
+                _rmTower.Update(dt);
                 _accumulator -= TargetFrameTimeMs;
             }
             RenderFrame();
             Invalidate();
+        }
+
+        /// <summary>
+        /// Kiểm tra va chạm giữa player, zombie, và đạn
+        /// </summary>
+        private void CheckCollisions()
+        {
+            var playerPos = _mainPlayer.Transform.Position;
+            var playerRenderer = _mainPlayer.StateMachine.SpriteRenderer;
+
+            Rectangle playerRect = playerRenderer.GetHitbox();
+            Graphics g = CreateGraphics();
+            // Kiểm tra va chạm với zombies
+            foreach (var zombie in _zombieSpawner.Zombies)
+            {
+                if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
+                    continue;
+
+                var zombiePos = zombie.Transform.Position;
+                var zombieRenderer = zombie.StateMachine.SpriteRenderer;
+
+                Rectangle zombieRect = zombieRenderer.GetHitbox();  
+
+                // Player chạm zombie
+                if (playerRect.IntersectsWith(zombieRect))
+                {
+                    zombie.State = Zombie.ZombieState.Attacking;
+                    using (Pen pen = new Pen(Color.Blue, 2))
+                    {
+                        g.DrawRectangle(pen, zombieRect);
+                        g.DrawRectangle(pen, playerRect);
+                    }
+                    // TODO: Gây damage cho player
+                    // _mainPlayer.TakeDamage(zombie.Data.Damage);
+                }
+                else
+                {
+                    zombie.State = Zombie.ZombieState.Walking; // Cập nhật di chuyển sau khi người chơi rời 
+                }
+            }
         }
 
         /// <summary>
@@ -94,8 +146,31 @@ namespace BTLT04
             using (Graphics g = Graphics.FromImage(_backBuffer))
             {
                 g.Clear(Color.CornflowerBlue); // nền
+
+                DrawLanes(g);
+
+                // Vẽ zombies TRƯỚC (để player ở trên)
+                _zombieSpawner.Draw(g);
                 _mainPlayer.Draw(g);
                 _rmTower.Draw(g);
+            }
+        }
+
+        /// <summary>
+        /// Vẽ các lanes như PvZ (optional)
+        /// </summary>
+        private void DrawLanes(Graphics g)
+        {
+            const int TotalLanes = 5;
+            float laneHeight = ClientSize.Height / (float)TotalLanes;
+
+            using (Pen lanePen = new Pen(Color.FromArgb(50, Color.Black), 2))
+            {
+                for (int i = 1; i < TotalLanes; i++)
+                {
+                    float y = i * laneHeight;
+                    g.DrawLine(lanePen, 0, y, PlayArea.Width, y);
+                }
             }
         }
 
@@ -120,6 +195,7 @@ namespace BTLT04
 
             RecreateBackBuffer();
             _mainPlayer.UpdatePlayArea(PlayArea);
+            _zombieSpawner.UpdatePlayArea(PlayArea);
         }
 
         /// <summary>
@@ -171,6 +247,13 @@ namespace BTLT04
             _backBuffer?.Dispose();
             Content.UnloadAll(); // giải phóng tất cả bitmap
             base.OnFormClosed(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _playing = !_playing;
+            if (_playing) btnPlay.Text = "Stop";
+            else btnPlay.Text = "Continue";
         }
     }
 

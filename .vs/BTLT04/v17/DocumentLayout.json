@@ -3,7 +3,31 @@
   "WorkspaceRootPath": "D:\\third\\M\\IT008\\BTLT04\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|D:\\third\\M\\IT008\\BTLT04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombiedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombiedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -13,18 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player\\walk.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
@@ -58,17 +66,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwEwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T15:13:41.73Z",
               "IsPinned": true,
@@ -82,18 +90,15 @@
               "RelativeDocumentMoniker": "Components\\SpriteRenderer.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Components\\SpriteRenderer.cs",
               "RelativeToolTip": "Components\\SpriteRenderer.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAASwDEAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAkwAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T16:05:43.854Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -106,18 +111,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Zombie.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Zombie.cs",
+              "RelativeDocumentMoniker": "Sources\\Zombie.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Zombie.cs",
+              "RelativeToolTip": "Sources\\Zombie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T07:18:56.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeDocumentMoniker": "Sources\\Player.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeToolTip": "Sources\\Player.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAUwBwAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T16:15:05.46Z"
+              "WhenOpened": "2025-11-12T16:15:05.46Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -130,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Transform.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
               "RelativeDocumentMoniker": "Components\\Transform.cs",
@@ -138,12 +157,11 @@
               "RelativeToolTip": "Components\\Transform.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T15:52:29.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T15:52:29.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "PlayerAttack2Prj.png",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Projectile\\PlayerAttack2Prj.png",
               "RelativeDocumentMoniker": "Sources\\Projectile\\PlayerAttack2Prj.png",
@@ -154,7 +172,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-12T03:42:46.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ZombieData.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\ZombieData.cs",
+              "RelativeDocumentMoniker": "Sources\\ZombieData.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\ZombieData.cs",
+              "RelativeToolTip": "Sources\\ZombieData.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAADwvwkAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T07:18:57.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Attack_1.png",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
               "RelativeDocumentMoniker": "Sources\\Player\\Attack_1.png",
@@ -165,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -178,18 +222,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": ".gitignore",
-              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-12T03:42:46.337Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -201,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "README.md",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -213,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Walk.png",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Walk.png",
               "RelativeDocumentMoniker": "Sources\\Player\\Walk.png",
