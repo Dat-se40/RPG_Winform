@@ -1,0 +1,163 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\third\\M\\IT008\\BTLT04\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player\\attack_2.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player\\attack_2.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Attack_1.png",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
+              "RelativeDocumentMoniker": "Sources\\Player\\Attack_1.png",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
+              "RelativeToolTip": "Sources\\Player\\Attack_1.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-11-14T01:03:35.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Attack_2.png",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_2.png",
+              "RelativeDocumentMoniker": "Sources\\Player\\Attack_2.png",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_2.png",
+              "RelativeToolTip": "Sources\\Player\\Attack_2.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-11-14T01:03:27.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SpriteRenderer.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\SpriteRenderer.cs",
+              "RelativeDocumentMoniker": "Components\\SpriteRenderer.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Components\\SpriteRenderer.cs",
+              "RelativeToolTip": "Components\\SpriteRenderer.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAA3wEcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T01:02:06.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Transform.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
+              "RelativeDocumentMoniker": "Components\\Transform.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
+              "RelativeToolTip": "Components\\Transform.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAwwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T01:00:53.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Projectile.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Projectile.cs",
+              "RelativeDocumentMoniker": "Sources\\Projectile.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Projectile.cs",
+              "RelativeToolTip": "Sources\\Projectile.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAArwBcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T01:00:31.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T01:00:29.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
+              "RelativeDocumentMoniker": "Sources\\Player.cs",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
+              "RelativeToolTip": "Sources\\Player.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAAGAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T00:51:22.021Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 104,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

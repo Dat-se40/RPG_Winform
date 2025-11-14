@@ -11,7 +11,6 @@ internal class Player
     public Transform Transform { get; } = new Transform(); // MỚI
     private readonly HashSet<Keys> _pressedKeys = new();
     private const float Speed = 180f; // pixel/giây
-
     private Rectangle _playArea;
 
     public Player(Rectangle playArea)
@@ -22,6 +21,7 @@ internal class Player
         StateMachine.AddState("Idle", @"Sources\Player\Idle.png", 6);
         StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7);
         StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
+        StateMachine.AddState("Attack1", @"Sources\Player\Attack_1.png", 10);
         StateMachine.ChangeState("Idle");
     }
 
@@ -69,6 +69,8 @@ internal class Player
 
     private void UpdateState()
     {
+        if ((StateMachine._currentState == "Attack1" || StateMachine._currentState == "Attack2") &&
+              !StateMachine.SpriteRenderer.isLastFrame()) return;
         StateMachine.ChangeState(Transform.Velocity.IsEmpty ? "Idle" : "Walk");
     }
 
@@ -134,6 +136,7 @@ internal class Player
 
         var proj = new Projectile(projPos, direction, spritePath, 6, speed, range, 1.5f, rotate);
         _projectiles.Add(proj);
+        StateMachine.ChangeState("Attack" + type.ToString());
     }
 
 }
@@ -144,7 +147,7 @@ internal class StateMachine
     public SpriteRenderer SpriteRenderer { get; private set; }
     private readonly Transform _transform; // Giữ reference
     private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
-    private string _currentState = "";
+    public string _currentState = "";
 
     public StateMachine(Transform transform)
     {

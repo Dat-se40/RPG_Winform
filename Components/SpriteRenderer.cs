@@ -66,6 +66,11 @@ namespace BTLT04.Components
 
             g.DrawImage(_spriteSheet, dest, src, GraphicsUnit.Pixel);
         }
+        public bool isLastFrame() 
+        {
+            if (CurrentFrame == FrameCount - 1) return true;
+            return false;
+        }
     }
 
     /// <summary>
