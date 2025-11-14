@@ -1,12 +1,16 @@
 ﻿using BTLT04.Components;
+using BTLT04.Sources;
 using Transform = BTLT04.Components.Transform; 
 internal class Player
 {
+    //attack
+    private readonly List<Projectile> _projectiles = new();
+    public IEnumerable<Projectile> Projectiles => _projectiles;
+    //
     public StateMachine StateMachine { get; }
     public Transform Transform { get; } = new Transform(); // MỚI
     private readonly HashSet<Keys> _pressedKeys = new();
     private const float Speed = 180f; // pixel/giây
-
     private Rectangle _playArea;
 
     public Player(Rectangle playArea)
@@ -17,6 +21,7 @@ internal class Player
         StateMachine.AddState("Idle", @"Sources\Player\Idle.png", 6);
         StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7);
         StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
+        StateMachine.AddState("Attack1", @"Sources\Player\Attack_1.png", 10);
         StateMachine.ChangeState("Idle");
         SetHitBox(); 
     }
@@ -32,6 +37,14 @@ internal class Player
         Transform.Update(dt); // Tự động di chuyển theo velocity
         ClampToBounds();
         StateMachine.Update(dt);
+
+        // === Update projectiles ===
+        foreach (var prj in _projectiles)
+            prj.Update(dt);
+
+        // Loại bỏ đạn đã hết phạm vi
+        _projectiles.RemoveAll(p => p.IsExpired);
+
     }
 
     private void HandleInput(float dt)
@@ -60,15 +73,76 @@ internal class Player
 
     private void UpdateState()
     {
+        if ((StateMachine._currentState == "Attack1" || StateMachine._currentState == "Attack2") &&
+              !StateMachine.SpriteRenderer.isLastFrame()) return;
         StateMachine.ChangeState(Transform.Velocity.IsEmpty ? "Idle" : "Walk");
     }
 
     // Input
-    public void OnKeyDown(Keys key) => _pressedKeys.Add(key);
+    public void OnKeyDown(Keys key)
+    {
+        _pressedKeys.Add(key); 
+
+        //attack
+        if (key == Keys.Q)
+            Attack(1);
+        else if (key == Keys.E)
+            Attack(2);
+    }
+
+
     public void OnKeyUp(Keys key) => _pressedKeys.Remove(key);
 
-    public void Draw(Graphics g) => StateMachine.SpriteRenderer.Draw(g);
+    public void Draw(Graphics g)
+    {
+        // Vẽ nhân vật
+        StateMachine.SpriteRenderer.Draw(g);
+
+        // Vẽ tất cả đạn
+        foreach (var prj in _projectiles)
+            prj.Draw(g);
+    }
+
     public void UpdatePlayArea(Rectangle area) => _playArea = area;
+
+    //Add attack Q E
+    private void Attack(int type)
+    {
+        string spritePath;
+        float speed;
+        float range;
+
+        // Căn giữa nhân vật, bắn ra từ giữa thân – thấp hơn một chút
+        var projPos = new PointF(
+            Transform.Position.X + StateMachine.SpriteRenderer.FrameWidth * 0.65f,
+            Transform.Position.Y + StateMachine.SpriteRenderer.FrameHeight * 0.65f
+            );
+
+
+        if (type == 1)
+        {
+            spritePath = @"Sources\Projectile\PlayerAttack1Prj.png";
+            speed = 300f;
+            range = 350f; //phạm vi bay
+        }
+        else
+        {
+            spritePath = @"Sources\Projectile\PlayerAttack2Prj.png";
+            speed = 220f;
+            range = 200f; //phạm vi bay
+        }
+
+        // Chiều bắn
+        var direction = new PointF(1, 0);
+
+        // Nếu là loại 2 (E) xoay sprite -90 độ
+        bool rotate = (type == 2);
+
+        var proj = new Projectile(projPos, direction, spritePath, 6, speed, range, 1.5f, rotate);
+        _projectiles.Add(proj);
+        StateMachine.ChangeState("Attack" + type.ToString());
+    }
+
 }
 
 // === StateMachine cập nhật ===
@@ -77,7 +151,7 @@ internal class StateMachine
     public SpriteRenderer SpriteRenderer { get; private set; }
     private readonly Transform _transform; // Giữ reference
     private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
-    private string _currentState = "";
+    public string _currentState = "";
 
     public StateMachine(Transform transform)
     {

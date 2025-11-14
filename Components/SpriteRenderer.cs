@@ -60,8 +60,24 @@ namespace BTLT04.Components
             if (g == null) return;
             var pos = _transform.Position;
             var src = new Rectangle(CurrentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
-            var dest = new Rectangle((int)pos.X, (int)pos.Y, FrameWidth, FrameHeight);
+            //var dest = new Rectangle((int)pos.X, (int)pos.Y, FrameWidth, FrameHeight);
+
+            //scale ảnh
+            int scaledWidth = (int)(FrameWidth * _transform.Scale);
+            int scaledHeight = (int)(FrameHeight * _transform.Scale);
+
+            // Dựa theo scale để vẽ sprite to/nhỏ
+            var dest = new Rectangle(
+                (int)pos.X, (int)pos.Y,
+                scaledWidth, scaledHeight
+            );
+
             g.DrawImage(_spriteSheet, dest, src, GraphicsUnit.Pixel);
+        }
+        public bool isLastFrame() 
+        {
+            if (CurrentFrame == FrameCount - 1) return true;
+            return false;
         }
         public Rectangle GetHitbox()
         {
