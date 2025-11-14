@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\third\\M\\IT008\\BTLT04\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -38,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +62,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-14T01:30:54.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Attack_1.png",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
               "RelativeDocumentMoniker": "Sources\\Player\\Attack_1.png",
@@ -70,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Attack_2.png",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_2.png",
               "RelativeDocumentMoniker": "Sources\\Player\\Attack_2.png",
@@ -82,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SpriteRenderer.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\SpriteRenderer.cs",
               "RelativeDocumentMoniker": "Components\\SpriteRenderer.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Transform.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Components\\Transform.cs",
               "RelativeDocumentMoniker": "Components\\Transform.cs",
@@ -108,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Projectile.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Projectile.cs",
               "RelativeDocumentMoniker": "Sources\\Projectile.cs",
@@ -121,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -134,13 +151,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeDocumentMoniker": "Sources\\Player.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeToolTip": "Sources\\Player.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAAAGAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAAKEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T00:51:22.021Z",
               "EditorCaption": ""

@@ -82,8 +82,7 @@
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
               "RelativeToolTip": "Sources\\Player\\Attack_1.png",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-14T01:03:35.078Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:03:35.078Z"
             },
             {
               "$type": "Document",
@@ -94,8 +93,7 @@
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_2.png",
               "RelativeToolTip": "Sources\\Player\\Attack_2.png",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-14T01:03:27.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:03:27.062Z"
             },
             {
               "$type": "Document",
@@ -107,8 +105,7 @@
               "RelativeToolTip": "Components\\SpriteRenderer.cs",
               "ViewState": "AgIAAE4AAAAAAAAAAAA3wEcAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T01:02:06.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:02:06.421Z"
             },
             {
               "$type": "Document",
@@ -120,8 +117,7 @@
               "RelativeToolTip": "Components\\Transform.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAwwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T01:00:53.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:00:53.833Z"
             },
             {
               "$type": "Document",
@@ -133,8 +129,7 @@
               "RelativeToolTip": "Sources\\Projectile.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAArwBcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T01:00:31.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:00:31.462Z"
             },
             {
               "$type": "Document",
@@ -146,8 +141,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T01:00:29.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T01:00:29.202Z"
             },
             {
               "$type": "Document",
@@ -159,8 +153,7 @@
               "RelativeToolTip": "Sources\\Player.cs",
               "ViewState": "AgIAAJsAAAAAAAAAAAAAAKEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T00:51:22.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T00:51:22.021Z"
             }
           ]
         },
