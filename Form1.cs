@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using BTLT04.Sources;
 using Timer = System.Windows.Forms.Timer;
 
 namespace BTLT04
@@ -22,6 +23,7 @@ namespace BTLT04
 
         // Game objects
         private Player _mainPlayer;
+        private ZombieSpawner _zombieSpawner;
         private Timer _gameTimer;
 
         // Giới hạn vùng chơi (trừ viền sprite)
@@ -52,6 +54,9 @@ namespace BTLT04
 
             // Khởi tạo nhân vật với vùng chơi
             _mainPlayer = new Player(PlayArea);
+            
+            // Khởi tạo zombie
+            _zombieSpawner = new ZombieSpawner(PlayArea);
 
             // Timer chạy liên tục (interval nhỏ nhất → chính xác hơn)
             _gameTimer = new Timer { Interval = 1 };
@@ -75,11 +80,56 @@ namespace BTLT04
             // Cập nhật logic với fixed timestep (tránh giật lag)
             while (_accumulator >= TargetFrameTimeMs)
             {
-                _mainPlayer.Update(TargetFrameTimeMs / 1000.0);
+                double dt = TargetFrameTimeMs / 1000.0;
+                _mainPlayer.Update(dt);
+                _zombieSpawner.Update((float)dt);
+                CheckCollisions();
                 _accumulator -= TargetFrameTimeMs;
             }
             RenderFrame();
             Invalidate();
+        }
+        
+        /// <summary>
+        /// Kiểm tra va chạm giữa player, zombie, và đạn
+        /// </summary>
+        private void CheckCollisions()
+        {
+            var playerPos = _mainPlayer.Transform.Position;
+            var playerRenderer = _mainPlayer.StateMachine.SpriteRenderer;
+            
+            Rectangle playerRect = new Rectangle(
+                (int)playerPos.X,
+                (int)playerPos.Y,
+                playerRenderer.FrameWidth,
+                playerRenderer.FrameHeight
+            );
+
+            // Kiểm tra va chạm với zombies
+            foreach (var zombie in _zombieSpawner.Zombies)
+            {
+                if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
+                    continue;
+
+                var zombiePos = zombie.Transform.Position;
+                var zombieRenderer = zombie.StateMachine.SpriteRenderer;
+
+                Rectangle zombieRect = new Rectangle(
+                    (int)zombiePos.X,
+                    (int)zombiePos.Y,
+                    zombieRenderer.FrameWidth,
+                    zombieRenderer.FrameHeight
+                );
+
+                // Player chạm zombie
+                if (playerRect.IntersectsWith(zombieRect))
+                {
+                    zombie.State = Zombie.ZombieState.Attacking;
+                    
+                    // TODO: Gây damage cho player
+                    // _mainPlayer.TakeDamage(zombie.Data.Damage);
+                }
+            }
         }
 
         /// <summary>
@@ -90,11 +140,34 @@ namespace BTLT04
             using (Graphics g = Graphics.FromImage(_backBuffer))
             {
                 g.Clear(Color.CornflowerBlue); // nền
+
+                DrawLanes(g);
+                
+                // Vẽ zombies TRƯỚC (để player ở trên)
+                _zombieSpawner.Draw(g);
                 _mainPlayer.Draw(g);
 
                 // [Tùy chọn] Vẽ debug info
                 // g.DrawString($"FPS: ~{1000 / _stopwatch.Elapsed.TotalMilliseconds:F1}", 
                 //              new Font("Consolas", 10), Brushes.White, 10, 10);
+            }
+        }
+        
+        /// <summary>
+        /// Vẽ các lanes như PvZ (optional)
+        /// </summary>
+        private void DrawLanes(Graphics g)
+        {
+            const int TotalLanes = 5;
+            float laneHeight = ClientSize.Height / (float)TotalLanes;
+
+            using (Pen lanePen = new Pen(Color.FromArgb(50, Color.Black), 2))
+            {
+                for (int i = 1; i < TotalLanes; i++)
+                {
+                    float y = i * laneHeight;
+                    g.DrawLine(lanePen, 0, y, PlayArea.Width, y);
+                }
             }
         }
 
@@ -119,6 +192,7 @@ namespace BTLT04
 
             RecreateBackBuffer();
             _mainPlayer.UpdatePlayArea(PlayArea);
+            _zombieSpawner.UpdatePlayArea(PlayArea);
         }
 
         /// <summary>

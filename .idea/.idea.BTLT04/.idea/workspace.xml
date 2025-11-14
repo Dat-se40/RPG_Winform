@@ -8,27 +8,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a3f074c-4198-4770-875a-00a4a39b59dd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Sources/Enemy/miniAttack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Enemy/miniDead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Enemy/miniIdle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Enemy/miniWalk.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Zombie.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/ZombieData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/ZombieSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BTLT04/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BTLT04/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/enm/newAttack.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Enemy/newAttack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/enm/newDie.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Enemy/newDie.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/enm/newIdle.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Enemy/newIdle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/enm/newWalk.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Enemy/newWalk.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0-windows/BTLT04.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/BTLT04.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/BTLT04.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/BTLT04.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/BTLT04.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.csproj.GenerateResource.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/BTLT04.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/ref/BTLT04.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/ref/BTLT04.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0-windows/refint/BTLT04.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0-windows/refint/BTLT04.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,22 +58,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.BTLT04.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.BTLT04.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "PhongPhan",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="BTLT04" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
