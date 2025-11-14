@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lbState = new Label();
-            lbFrameCount = new Label();
+            btnPlay = new Button();
             SuspendLayout();
             // 
             // lbState
@@ -41,24 +41,25 @@
             lbState.TabIndex = 0;
             lbState.Text = "label1";
             // 
-            // lbFrameCount
+            // btnPlay
             // 
-            lbFrameCount.AutoSize = true;
-            lbFrameCount.Location = new Point(162, 35);
-            lbFrameCount.Name = "lbFrameCount";
-            lbFrameCount.Size = new Size(38, 15);
-            lbFrameCount.TabIndex = 1;
-            lbFrameCount.Text = "label1";
+            btnPlay.Location = new Point(131, 27);
+            btnPlay.Name = "btnPlay";
+            btnPlay.Size = new Size(75, 23);
+            btnPlay.TabIndex = 1;
+            btnPlay.Text = "Stop";
+            btnPlay.UseVisualStyleBackColor = true;
+            btnPlay.Click += button1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(lbFrameCount);
+            Controls.Add(btnPlay);
             Controls.Add(lbState);
             Name = "Form1";
-            Text = "Go To Hell, Bitch!";
+            Text = "Wizard vs Zombie";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -66,6 +67,6 @@
         #endregion
 
         private Label lbState;
-        private Label lbFrameCount;
+        private Button btnPlay;
     }
 }

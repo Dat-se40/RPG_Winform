@@ -20,6 +20,12 @@ namespace BTLT04.Components
         private float _frameTimer = 0f;
         private const float FrameDuration = 0.1f; // 10 FPS
 
+        // OffsetX hitbox đúng hơn
+        public int HitboxOffsetX { get; set; } = 0;
+        public int HitboxOffsetY { get; set; } = 0;
+        public int HitboxWidth { get; set; }
+        public int HitboxHeight { get; set; }
+
         public SpriteRenderer(Bitmap sheet, int frameCount, Transform transform)
         {
             _spriteSheet = sheet ?? throw new ArgumentNullException(nameof(sheet));
@@ -28,6 +34,8 @@ namespace BTLT04.Components
 
             FrameCount = frameCount;
             SetupFrames();
+            HitboxWidth = FrameWidth;
+            HitboxHeight = FrameHeight;
         }
 
         private void SetupFrames()
@@ -52,8 +60,34 @@ namespace BTLT04.Components
             if (g == null) return;
             var pos = _transform.Position;
             var src = new Rectangle(CurrentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
-            var dest = new Rectangle((int)pos.X, (int)pos.Y, FrameWidth, FrameHeight);
+            //var dest = new Rectangle((int)pos.X, (int)pos.Y, FrameWidth, FrameHeight);
+
+            //scale ảnh
+            int scaledWidth = (int)(FrameWidth * _transform.Scale);
+            int scaledHeight = (int)(FrameHeight * _transform.Scale);
+
+            // Dựa theo scale để vẽ sprite to/nhỏ
+            var dest = new Rectangle(
+                (int)pos.X, (int)pos.Y,
+                scaledWidth, scaledHeight
+            );
+
             g.DrawImage(_spriteSheet, dest, src, GraphicsUnit.Pixel);
+        }
+        public bool isLastFrame() 
+        {
+            if (CurrentFrame == FrameCount - 1) return true;
+            return false;
+        }
+        public Rectangle GetHitbox()
+        {
+            var pos = _transform.Position;
+            return new Rectangle(
+                (int)pos.X + HitboxOffsetX,
+                (int)pos.Y + HitboxOffsetY,
+                HitboxWidth,
+                HitboxHeight
+            );
         }
     }
 

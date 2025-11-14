@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Sources\Background\" />
     <Folder Include="Sources\Player\" />
   </ItemGroup>
 
