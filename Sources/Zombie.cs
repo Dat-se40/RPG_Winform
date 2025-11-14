@@ -38,8 +38,12 @@ internal class Zombie
         StateMachine.AddState("Dead", data.DeadSpritePath, data.DeadFrameCount);
             
         StateMachine.ChangeState("Idle");
+        SetHixBox();
     }
-    
+    void SetHixBox()
+    {
+        // Cập nhật các công thức tính 
+    }
     public void Update(float deltaTime)
     {
         // Xử lý animation chết

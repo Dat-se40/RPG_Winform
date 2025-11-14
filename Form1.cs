@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BTLT04.Sources;
 using Timer = System.Windows.Forms.Timer;
+using System.Security.Cryptography;
 
 namespace BTLT04
 {
@@ -28,11 +29,13 @@ namespace BTLT04
 
         // Giới hạn vùng chơi (trừ viền sprite)
         private Rectangle PlayArea => ClientRectangle;
-
+        // Nút hoạt động
+        private bool _playing = true;
         public Form1()
         {
             InitializeComponent();
             InitGame();
+            this.KeyPreview = true;
         }
 
         /// <summary>
@@ -54,7 +57,7 @@ namespace BTLT04
 
             // Khởi tạo nhân vật với vùng chơi
             _mainPlayer = new Player(PlayArea);
-            
+
             // Khởi tạo zombie
             _zombieSpawner = new ZombieSpawner(PlayArea);
 
@@ -72,6 +75,7 @@ namespace BTLT04
         /// </summary>
         private void GameLoop(object sender, EventArgs e)
         {
+            if (!_playing) return; 
             // Tính delta time (ms)
             double deltaMs = _stopwatch.Elapsed.TotalMilliseconds;
             _stopwatch.Restart();
@@ -89,7 +93,7 @@ namespace BTLT04
             RenderFrame();
             Invalidate();
         }
-        
+
         /// <summary>
         /// Kiểm tra va chạm giữa player, zombie, và đạn
         /// </summary>
@@ -97,14 +101,9 @@ namespace BTLT04
         {
             var playerPos = _mainPlayer.Transform.Position;
             var playerRenderer = _mainPlayer.StateMachine.SpriteRenderer;
-            
-            Rectangle playerRect = new Rectangle(
-                (int)playerPos.X,
-                (int)playerPos.Y,
-                playerRenderer.FrameWidth,
-                playerRenderer.FrameHeight
-            );
 
+            Rectangle playerRect = playerRenderer.GetHitbox();
+            Graphics g = CreateGraphics();
             // Kiểm tra va chạm với zombies
             foreach (var zombie in _zombieSpawner.Zombies)
             {
@@ -114,20 +113,23 @@ namespace BTLT04
                 var zombiePos = zombie.Transform.Position;
                 var zombieRenderer = zombie.StateMachine.SpriteRenderer;
 
-                Rectangle zombieRect = new Rectangle(
-                    (int)zombiePos.X,
-                    (int)zombiePos.Y,
-                    zombieRenderer.FrameWidth,
-                    zombieRenderer.FrameHeight
-                );
+                Rectangle zombieRect = zombieRenderer.GetHitbox();  
 
                 // Player chạm zombie
                 if (playerRect.IntersectsWith(zombieRect))
                 {
                     zombie.State = Zombie.ZombieState.Attacking;
-                    
+                    using (Pen pen = new Pen(Color.Blue, 2))
+                    {
+                        g.DrawRectangle(pen, zombieRect);
+                        g.DrawRectangle(pen, playerRect);
+                    }
                     // TODO: Gây damage cho player
                     // _mainPlayer.TakeDamage(zombie.Data.Damage);
+                }
+                else
+                {
+                    zombie.State = Zombie.ZombieState.Walking; // Cập nhật di chuyển sau khi người chơi rời 
                 }
             }
         }
@@ -142,7 +144,7 @@ namespace BTLT04
                 g.Clear(Color.CornflowerBlue); // nền
 
                 DrawLanes(g);
-                
+
                 // Vẽ zombies TRƯỚC (để player ở trên)
                 _zombieSpawner.Draw(g);
                 _mainPlayer.Draw(g);
@@ -152,7 +154,7 @@ namespace BTLT04
                 //              new Font("Consolas", 10), Brushes.White, 10, 10);
             }
         }
-        
+
         /// <summary>
         /// Vẽ các lanes như PvZ (optional)
         /// </summary>
@@ -244,6 +246,13 @@ namespace BTLT04
             _backBuffer?.Dispose();
             Content.UnloadAll(); // giải phóng tất cả bitmap
             base.OnFormClosed(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _playing = !_playing;
+            if (_playing) btnPlay.Text = "Stop";
+            else btnPlay.Text = "Continue";
         }
     }
 

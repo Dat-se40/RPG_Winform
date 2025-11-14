@@ -18,8 +18,12 @@ internal class Player
         StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7);
         StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
         StateMachine.ChangeState("Idle");
+        SetHitBox(); 
     }
-
+    void SetHitBox()
+    {
+        // Cập nhập các công thức tính sau
+    }
     public void Update(double deltaTime)
     {
         float dt = (float)deltaTime;

@@ -1,4 +1,4 @@
-namespace BTLT04.Sources;
+﻿namespace BTLT04.Sources;
 
 internal class ZombieSpawner
     {
@@ -138,7 +138,7 @@ internal class ZombieSpawner
                 SpawnZombieInLaneWithOffset(laneIndex, i * 80f);
             }
         }
-        
+        // Sẽ có một vài zombie sinh ra bên ngoài màn hình  
         private void SpawnZombieInLaneWithOffset(int laneIndex, float offsetX)
         {
             if (laneIndex < 0 || laneIndex >= TotalLanes) return;
