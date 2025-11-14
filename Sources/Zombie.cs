@@ -43,6 +43,18 @@ internal class Zombie
     void SetHixBox()
     {
         // Cập nhật các công thức tính 
+        void SetHixBox()
+        {
+            // Xác định phần thân thực của zombie (bỏ khoảng trắng xung quanh).
+
+            var renderer = StateMachine.SpriteRenderer;
+
+            // Ví dụ sẽ thay số sau
+            renderer.HitboxOffsetX = 12;  // pixel tính từ cạnh trái của frame
+            renderer.HitboxOffsetY = 5;   // pixel tính từ cạnh trên frame
+            renderer.HitboxWidth = 45;  // chiều rộng phần thân zombie
+            renderer.HitboxHeight = 85;  // chiều cao thực tế
+        }
     }
     public void Update(float deltaTime)
     {
@@ -116,4 +128,7 @@ internal class Zombie
     {
         return (!IsAlive && _deadTimer > DeadDuration) || IsOffScreen();
     }
+
+
+
 }

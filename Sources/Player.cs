@@ -5,6 +5,11 @@ internal class Player
 {
     //attack
     private readonly List<Projectile> _projectiles = new();
+
+    //đạn sau frame attack
+    private bool _isAttacking = false;
+    private int _attackType = 0; // 1 = Q, 2 = E
+
     public IEnumerable<Projectile> Projectiles => _projectiles;
     //
     public StateMachine StateMachine { get; }
@@ -13,15 +18,16 @@ internal class Player
     private const float Speed = 180f; // pixel/giây
     private Rectangle _playArea;
 
+
     public Player(Rectangle playArea)
     {
         _playArea = playArea;
         StateMachine = new StateMachine(Transform); // Truyền Transform vào
 
-        StateMachine.AddState("Idle", @"Sources\Player\Idle.png", 6);
-        StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7);
-        StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
-        StateMachine.AddState("Attack1", @"Sources\Player\Attack_1.png", 10);
+        StateMachine.AddState("Idle", @"Sources\Player\Idle.png", 6, 1f);
+        StateMachine.AddState("Walk", @"Sources\Player\Walk.png", 7, 1f);
+        StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4, 1f);
+        StateMachine.AddState("Attack1", @"Sources\Player\Attack_1.png", 10, 2f);
         StateMachine.ChangeState("Idle");
         SetHitBox(); 
     }
@@ -37,6 +43,13 @@ internal class Player
         Transform.Update(dt); // Tự động di chuyển theo velocity
         ClampToBounds();
         StateMachine.Update(dt);
+
+        
+        if (_isAttacking && StateMachine.SpriteRenderer.isLastFrame())
+        {
+            _isAttacking = false;
+            StateMachine.ChangeState("Idle");
+        }
 
         // === Update projectiles ===
         foreach (var prj in _projectiles)
@@ -108,40 +121,63 @@ internal class Player
     //Add attack Q E
     private void Attack(int type)
     {
-        string spritePath;
-        float speed;
-        float range;
+        if (_isAttacking) return; // đang tấn công thì bỏ qua
 
-        // Căn giữa nhân vật, bắn ra từ giữa thân – thấp hơn một chút
+        _isAttacking = true;
+        _attackType = type;
+
+        // chuyển animation tấn công
+        StateMachine.ChangeState("Attack" + type.ToString());
+
+        // đặt thời gian trễ theo animation
+        int delayMs = (type == 1) ? 200 : 200; // Q=0.6 s, E=0.2 s
+
+        // gọi bắn đạn sau khoảng delay này
+        var fireTimer = new System.Windows.Forms.Timer();
+        fireTimer.Interval = delayMs;
+        fireTimer.Tick += (s, e) =>
+        {
+            fireTimer.Stop();
+            fireTimer.Dispose();
+
+            FireProjectile(type);
+            _isAttacking = false;
+        };
+        fireTimer.Start();
+    }
+
+    private void FireProjectile(int type)
+    {
+        string spritePath;
+        float speed, range;
+        int damage;
+        bool rotate = (type == 2);
+
         var projPos = new PointF(
             Transform.Position.X + StateMachine.SpriteRenderer.FrameWidth * 0.65f,
             Transform.Position.Y + StateMachine.SpriteRenderer.FrameHeight * 0.65f
-            );
-
+        );
 
         if (type == 1)
         {
             spritePath = @"Sources\Projectile\PlayerAttack1Prj.png";
             speed = 300f;
-            range = 350f; //phạm vi bay
+            range = 350f;
+            damage = 1;
         }
         else
         {
             spritePath = @"Sources\Projectile\PlayerAttack2Prj.png";
             speed = 220f;
-            range = 200f; //phạm vi bay
+            range = 200f;
+            damage = 2;
         }
 
-        // Chiều bắn
         var direction = new PointF(1, 0);
-
-        // Nếu là loại 2 (E) xoay sprite -90 độ
-        bool rotate = (type == 2);
-
-        var proj = new Projectile(projPos, direction, spritePath, 6, speed, range, 1.5f, rotate);
+        var proj = new Projectile(projPos, direction, spritePath, 6, speed, range, 1.5f, rotate, damage);
         _projectiles.Add(proj);
-        StateMachine.ChangeState("Attack" + type.ToString());
     }
+
 
 }
 
@@ -150,7 +186,7 @@ internal class StateMachine
 {
     public SpriteRenderer SpriteRenderer { get; private set; }
     private readonly Transform _transform; // Giữ reference
-    private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
+    private readonly Dictionary<string, (Bitmap sheet, int frameCount, float speed)> _states = new();
     public string _currentState = "";
 
     public StateMachine(Transform transform)
@@ -159,17 +195,17 @@ internal class StateMachine
         SpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1, transform);
     }
 
-    public void AddState(string name, string path, int frameCount)
+    public void AddState(string name, string path, int frameCount, float speed = 1f)
     {
         if (_states.ContainsKey(name)) return;
-        _states[name] = (Content.Load(path), frameCount);
+        _states[name] = (Content.Load(path), frameCount, speed);
     }
 
     public void ChangeState(string name)
     {
         if (_currentState == name || !_states.ContainsKey(name)) return;
-        var (sheet, count) = _states[name];
-        SpriteRenderer = new SpriteRenderer(sheet, count, _transform);
+        var (sheet, count, speed) = _states[name];
+        SpriteRenderer = new SpriteRenderer(sheet, count, _transform, speed);
         _currentState = name;
     }
 

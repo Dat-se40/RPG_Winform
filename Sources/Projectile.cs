@@ -11,6 +11,15 @@ namespace BTLT04.Sources
 {
     internal class Projectile
     {
+        //Damage
+        private readonly int _damage = 1; // mặc định 1 sát thương
+
+        // === Public accessors cho va chạm ===
+        public int Damage => _damage;
+        public Rectangle GetHitbox() => Sprite.GetHitbox();
+        public void Expire() => IsExpired = true;
+
+
         public Transform Transform { get; }
         public SpriteRenderer Sprite { get; }
 
@@ -22,7 +31,7 @@ namespace BTLT04.Sources
         public bool IsExpired { get; private set; } = false;
         private readonly bool _rotate;
         public Projectile(PointF start, PointF direction, string spritePath,
-                          int frames, float speed, float range, float scale = 1f, bool rotate = false)
+                          int frames, float speed, float range, float scale = 1f, bool rotate = false, int damage = 1)
         {
             _rotate = rotate; //xoay ảnh đạn (đạn 2)
 
@@ -38,6 +47,7 @@ namespace BTLT04.Sources
             _direction = direction;
             _speed = speed;
             _range = range;
+            _damage = damage;
         }
 
         public void Update(float dt)
