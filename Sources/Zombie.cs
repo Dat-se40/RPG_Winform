@@ -38,12 +38,48 @@ internal class Zombie
         StateMachine.AddState("Dead", data.DeadSpritePath, data.DeadFrameCount);
             
         StateMachine.ChangeState("Idle");
-        SetHixBox();
+        
+        StateMachine.OnStateChanged += UpdateHitBox;
+        UpdateHitBox();
+        // SetHixBox();
     }
-    void SetHixBox()
+    
+    void UpdateHitBox()
     {
-        // Cập nhật các công thức tính 
+        var renderer = StateMachine.SpriteRenderer;
+            
+        // Điều chỉnh hitbox theo type của zombie
+        switch (Data.Type)
+        {
+            case ZombieType.Normal:
+                renderer.HitboxOffsetX = 60;
+                renderer.HitboxOffsetY = 45;
+                renderer.HitboxWidth = 36;
+                renderer.HitboxHeight = 90;
+                break;
+                    
+            case ZombieType.Fast:
+                renderer.HitboxOffsetX = 30;
+                renderer.HitboxOffsetY = 5;
+                renderer.HitboxWidth = 50;
+                renderer.HitboxHeight = 80;
+                break;
+        }
     }
+    
+    // void SetHixBox()
+    // {
+    //     // Cập nhật các công thức tính 
+    //     var sprite = StateMachine.SpriteRenderer;
+    //
+    //     // Offset: vị trí bắt đầu của hitbox trong frame
+    //     sprite.HitboxOffsetX = 60; 
+    //     sprite.HitboxOffsetY = 60;
+    //
+    //     // Width/Height: kích thước vùng hitbox (không trừ offset!)
+    //     sprite.HitboxWidth = 36;   // Ví dụ: từ x=100 đến x=180
+    //     sprite.HitboxHeight = 90;
+    // }
     public void Update(float deltaTime)
     {
         // Xử lý animation chết

@@ -10,7 +10,7 @@ internal class Player
     public StateMachine StateMachine { get; }
     public Transform Transform { get; } = new Transform(); // MỚI
     private readonly HashSet<Keys> _pressedKeys = new();
-    private const float Speed = 180f; // pixel/giây
+    private const float Speed = 360f; // pixel/giây
     private Rectangle _playArea;
 
     public Player(Rectangle playArea)
@@ -23,12 +23,67 @@ internal class Player
         StateMachine.AddState("Attack2", @"Sources\Player\Attack_2.png", 4);
         StateMachine.AddState("Attack1", @"Sources\Player\Attack_1.png", 10);
         StateMachine.ChangeState("Idle");
-        SetHitBox(); 
+        
+        StateMachine.OnStateChanged += UpdateHitBox;
+        UpdateHitBox();
+        // SetHitBox(); 
     }
-    void SetHitBox()
+    
+    void UpdateHitBox()
     {
-        // Cập nhập các công thức tính sau
+        var renderer = StateMachine.SpriteRenderer;
+        
+        renderer.HitboxOffsetX = 50;
+        renderer.HitboxOffsetY = 60;
+        renderer.HitboxWidth = 28;
+        renderer.HitboxHeight = 65;
+        
+        // switch (StateMachine._currentState)
+        // {
+        //     case "Idle":
+        //         renderer.HitboxOffsetX = 50;
+        //         renderer.HitboxOffsetY = 60;
+        //         renderer.HitboxWidth = 28;
+        //         renderer.HitboxHeight = 65;
+        //         break;
+        //             
+        //     case "Walk":
+        //         renderer.HitboxOffsetX = 50;
+        //         renderer.HitboxOffsetY = 60;
+        //         renderer.HitboxWidth = 28;
+        //         renderer.HitboxHeight = 65;
+        //         break;
+        //             
+        //     case "Attack1":
+        //     case "Attack2":
+        //         renderer.HitboxOffsetX = 50;
+        //         renderer.HitboxOffsetY = 60;
+        //         renderer.HitboxWidth = 28;
+        //         renderer.HitboxHeight = 65;
+        //         break;
+        //             
+        //     default:
+        //         renderer.HitboxOffsetX = 50;
+        //         renderer.HitboxOffsetY = 60;
+        //         renderer.HitboxWidth = 28;
+        //         renderer.HitboxHeight = 65;
+        //         break;
+        // }
     }
+    
+    // void SetHitBox()
+    // {
+    //     // Cập nhập các công thức tính sau
+    //     var sprite = StateMachine.SpriteRenderer;
+    //
+    //     // Offset: vị trí bắt đầu của hitbox trong frame
+    //     sprite.HitboxOffsetX = 50; 
+    //     sprite.HitboxOffsetY = 70;
+    //
+    //     // Width/Height: kích thước vùng hitbox (không trừ offset!)
+    //     sprite.HitboxWidth = 28;   // Ví dụ: từ x=100 đến x=180
+    //     sprite.HitboxHeight = 28;
+    // }
     public void Update(double deltaTime)
     {
         float dt = (float)deltaTime;
@@ -146,32 +201,37 @@ internal class Player
 }
 
 // === StateMachine cập nhật ===
-internal class StateMachine
-{
-    public SpriteRenderer SpriteRenderer { get; private set; }
-    private readonly Transform _transform; // Giữ reference
-    private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
-    public string _currentState = "";
-
-    public StateMachine(Transform transform)
-    {
-        _transform = transform;
-        SpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1, transform);
-    }
-
-    public void AddState(string name, string path, int frameCount)
-    {
-        if (_states.ContainsKey(name)) return;
-        _states[name] = (Content.Load(path), frameCount);
-    }
-
-    public void ChangeState(string name)
-    {
-        if (_currentState == name || !_states.ContainsKey(name)) return;
-        var (sheet, count) = _states[name];
-        SpriteRenderer = new SpriteRenderer(sheet, count, _transform);
-        _currentState = name;
-    }
-
-    public void Update(float dt) => SpriteRenderer.Update(dt);
-}
+// internal class StateMachine
+// {
+//     public SpriteRenderer SpriteRenderer { get; private set; }
+//     private readonly Transform _transform; // Giữ reference
+//     private readonly Dictionary<string, (Bitmap sheet, int frameCount)> _states = new();
+//     public string _currentState = "";
+//     
+//     public event Action OnStateChanged;
+//
+//     public StateMachine(Transform transform)
+//     {
+//         _transform = transform;
+//         SpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1, transform);
+//     }
+//
+//     public void AddState(string name, string path, int frameCount)
+//     {
+//         if (_states.ContainsKey(name)) return;
+//         _states[name] = (Content.Load(path), frameCount);
+//     }
+//
+//     public void ChangeState(string name)
+//     {
+//         if (_currentState == name || !_states.ContainsKey(name)) return;
+//         var (sheet, count) = _states[name];
+//         SpriteRenderer = new SpriteRenderer(sheet, count, _transform);
+//         _currentState = name;
+//         
+//         //
+//         OnStateChanged?.Invoke(); 
+//     }
+//
+//     public void Update(float dt) => SpriteRenderer.Update(dt);
+// }

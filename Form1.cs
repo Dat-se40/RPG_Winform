@@ -123,11 +123,11 @@ namespace BTLT04
                 if (playerRect.IntersectsWith(zombieRect))
                 {
                     zombie.State = Zombie.ZombieState.Attacking;
-                    using (Pen pen = new Pen(Color.Blue, 2))
-                    {
-                        g.DrawRectangle(pen, zombieRect);
-                        g.DrawRectangle(pen, playerRect);
-                    }
+                    // using (Pen pen = new Pen(Color.Blue, 2))
+                    // {
+                    //     g.DrawRectangle(pen, zombieRect);
+                    //     g.DrawRectangle(pen, playerRect);
+                    // }
                     // TODO: Gây damage cho player
                     // _mainPlayer.TakeDamage(zombie.Data.Damage);
                 }
@@ -135,6 +135,7 @@ namespace BTLT04
                 {
                     zombie.State = Zombie.ZombieState.Walking; // Cập nhật di chuyển sau khi người chơi rời 
                 }
+                
             }
         }
 
@@ -150,8 +151,8 @@ namespace BTLT04
                 DrawLanes(g);
 
                 // Vẽ zombies TRƯỚC (để player ở trên)
-                _zombieSpawner.Draw(g);
                 _mainPlayer.Draw(g);
+                _zombieSpawner.Draw(g);
                 _rmTower.Draw(g);
             }
         }

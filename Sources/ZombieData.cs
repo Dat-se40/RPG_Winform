@@ -1,7 +1,14 @@
 namespace BTLT04.Sources;
 
+internal enum ZombieType
+{
+    Normal,
+    Fast
+}
+
 internal class ZombieData
 {
+    public ZombieType Type { get; set; }
     public string Name { get; set; }
     public int MaxHealth { get; set; }
     public float Speed { get; set; }
@@ -27,6 +34,7 @@ internal class ZombieData
     // Preset zombie types 
     public static ZombieData NormalZombie => new ZombieData
     {
+        Type = ZombieType.Normal,
         Name = "Normal",
         MaxHealth = 100,
         Speed = 30f,
@@ -47,6 +55,7 @@ internal class ZombieData
     
     public static ZombieData FastZombie => new ZombieData
     {
+        Type = ZombieType.Fast,
         Name = "Fast",
         MaxHealth = 60,
         Speed = 60f, // Di chuyển nhanh
