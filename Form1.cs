@@ -1,4 +1,4 @@
-﻿#region Form1.cs - Game Main Loop & Rendering
+﻿#region Form1.cs - Game Main Loop & Rendering with Health System
 using BTLT04.Components;
 using BTLT04.Sources;
 using System;
@@ -27,11 +27,19 @@ namespace BTLT04
         private Player _mainPlayer;
         private ZombieSpawner _zombieSpawner;
         private Timer _gameTimer;
-        private Tower _rmTower; 
+
+        // ⭐ HEALTH SYSTEM
+        private int _currentHealth = 100;
+        private int _maxHealth = 100;
+        private const int HealthPerZombie = 10; // Mỗi zombie qua trừ 10 máu
+
         // Giới hạn vùng chơi (trừ viền sprite)
         private Rectangle PlayArea => ClientRectangle;
+
         // Nút hoạt động
         private bool _playing = true;
+        private bool _gameOver = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -44,7 +52,6 @@ namespace BTLT04
         /// </summary>
         private void InitGame()
         {
-            // [Đạt] mấy cái này tui ko tự viết được hihi, cho ko hiểu rõ cái WinForm
             // Tối ưu WinForms rendering
             SetStyle(
                 ControlStyles.OptimizedDoubleBuffer |
@@ -58,12 +65,13 @@ namespace BTLT04
 
             // Khởi tạo nhân vật với vùng chơi
             _mainPlayer = new Player(PlayArea);
+
             // Khởi tạo zombie
             _zombieSpawner = new ZombieSpawner(PlayArea);
 
-            _rmTower = new Tower();
-            _rmTower.Transform.Position = new PointF(PlayArea.X, PlayArea.Y + PlayArea.Height/2);
-            
+            // ⭐ Cập nhật health UI
+            UpdateHealthUI();
+
             // Timer chạy liên tục (interval nhỏ nhất → chính xác hơn)
             _gameTimer = new Timer { Interval = 1 };
             _gameTimer.Tick += GameLoop;
@@ -78,7 +86,8 @@ namespace BTLT04
         /// </summary>
         private void GameLoop(object sender, EventArgs e)
         {
-            if (!_playing) return; 
+            if (!_playing || _gameOver) return;
+
             // Tính delta time (ms)
             double deltaMs = _stopwatch.Elapsed.TotalMilliseconds;
             _stopwatch.Restart();
@@ -90,14 +99,127 @@ namespace BTLT04
                 double dt = TargetFrameTimeMs / 1000.0;
                 _mainPlayer.Update(dt);
                 _zombieSpawner.Update((float)dt);
+                lbWaveCount.Text = $"Đợi tấn công: {_zombieSpawner._currentWaveIndex + 1} / {_zombieSpawner.TotalWaves} ";
                 CheckCollisions();
-                _rmTower.Update(dt);
+                CheckZombiesPassedLeft(); // ⭐ Kiểm tra zombie qua bên trái
                 _accumulator -= TargetFrameTimeMs;
-                lbWaveCount.Text = $"Wave hiện tại {_zombieSpawner.CurrentWave}/{_zombieSpawner.TotalWaves} ";
-                lbZombieCount.Text = "Số zombie hiện tại" + _zombieSpawner._zombiesSpawned;
             }
+
             RenderFrame();
             Invalidate();
+        }
+
+        /// <summary>
+        /// ⭐ Kiểm tra zombie đi qua bên trái màn hình
+        /// </summary>
+        private void CheckZombiesPassedLeft()
+        {
+            foreach (var zombie in _zombieSpawner.Zombies.ToList())
+            {
+                // Bỏ qua zombie đã chết
+                if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
+                    continue;
+
+                // Kiểm tra zombie đã qua bên trái
+                if (zombie.Transform.Position.X < -50) // Cho phép đi qua 1 chút
+                {
+                    TakeDamage(HealthPerZombie);
+
+                    // Đánh dấu zombie để remove (tránh trừ máu nhiều lần)
+                    zombie.TakeDamage(999999); // Kill luôn
+
+                    Debug.WriteLine($"⚠️ Zombie escaped! Health: {_currentHealth}/{_maxHealth}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// ⭐ Trừ máu player
+        /// </summary>
+        private void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+            if (_currentHealth < 0) _currentHealth = 0;
+
+            UpdateHealthUI();
+
+            // Game Over
+            if (_currentHealth <= 0)
+            {
+                GameOver();
+            }
+        }
+
+        /// <summary>
+        /// ⭐ Cập nhật UI thanh máu
+        /// </summary>
+        private void UpdateHealthUI()
+        {
+            this.InvokeIfRequired(() =>
+            {
+                lbCurrHp.Text = $" HP nhà chính: {_currentHealth}/{_maxHealth}";
+
+                // Đổi màu label theo máu
+                if (_currentHealth > 60)
+                    lbCurrHp.ForeColor = Color.Green;
+                else if (_currentHealth > 30)
+                    lbCurrHp.ForeColor = Color.Orange;
+                else
+                    lbCurrHp.ForeColor = Color.Red;
+            });
+        }
+
+        /// <summary>
+        /// ⭐ Xử lý Game Over
+        /// </summary>
+        private void GameOver()
+        {
+            _gameOver = true;
+            _playing = false;
+            _gameTimer?.Stop();
+
+            var result = MessageBox.Show(
+                $"Game Over!\n\nBạn đã hết máu!\nZombies spawned: {_zombieSpawner._zombiesSpawned}\n\nChơi lại?",
+                "Game Over",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Error
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                RestartGame();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        /// <summary>
+        /// ⭐ Restart game
+        /// </summary>
+        private void RestartGame()
+        {
+            // Reset health
+            _currentHealth = _maxHealth;
+            UpdateHealthUI();
+
+            // Reset game state
+            _gameOver = false;
+            _playing = true;
+
+            // Reset zombies
+            _zombieSpawner.Reset();
+
+            // Reset player position
+            _mainPlayer = new Player(PlayArea);
+
+            // Restart timer
+            _stopwatch.Restart();
+            _accumulator = 0;
+            _gameTimer.Start();
+
+            Debug.WriteLine("🔄 Game Restarted!");
         }
 
         /// <summary>
@@ -107,42 +229,43 @@ namespace BTLT04
         {
             var playerPos = _mainPlayer.Transform.Position;
             var playerRenderer = _mainPlayer.StateMachine.SpriteRenderer;
-
             Rectangle playerRect = playerRenderer.GetHitbox();
-            Graphics g = CreateGraphics();
+
             // Kiểm tra va chạm với zombies
             foreach (var zombie in _zombieSpawner.Zombies)
             {
+                // Bỏ qua zombie đã chết
                 if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
                     continue;
 
                 var zombiePos = zombie.Transform.Position;
                 var zombieRenderer = zombie.StateMachine.SpriteRenderer;
-
-                Rectangle zombieRect = zombieRenderer.GetHitbox();  
+                Rectangle zombieRect = zombieRenderer.GetHitbox();
 
                 // Player chạm zombie
                 if (playerRect.IntersectsWith(zombieRect))
                 {
                     zombie.State = Zombie.ZombieState.Attacking;
-                    // using (Pen pen = new Pen(Color.Blue, 2))
-                    // {
-                    //     g.DrawRectangle(pen, zombieRect);
-                    //     g.DrawRectangle(pen, playerRect);
-                    // }
-                    // TODO: Gây damage cho player
-                    // _mainPlayer.TakeDamage(zombie.Data.Damage);
+                    // TODO: Gây damage cho player (va chạm trực tiếp)
+                    // TakeDamage(1); 
                 }
                 else
                 {
-                    zombie.State = Zombie.ZombieState.Walking; // Cập nhật di chuyển sau khi người chơi rời 
+                    // Chỉ chuyển về Walking nếu không phải Dead
+                    if (zombie.State != Zombie.ZombieState.Dead)
+                    {
+                        zombie.State = Zombie.ZombieState.Walking;
+                    }
                 }
-                
             }
+
             // === Kiểm tra va chạm giữa đạn và zombie ===
             foreach (var proj in _mainPlayer.Projectiles.ToList())
             {
+                if (proj.IsExpired) continue;
+
                 Rectangle projRect = proj.GetHitbox();
+                bool hitSomething = false;
 
                 foreach (var zombie in _zombieSpawner.Zombies.ToList())
                 {
@@ -155,11 +278,13 @@ namespace BTLT04
                     {
                         zombie.TakeDamage(proj.Damage);
                         proj.Expire();
+                        hitSomething = true;
                         break;
                     }
                 }
-            }
 
+                if (hitSomething) break;
+            }
         }
 
         /// <summary>
@@ -174,9 +299,8 @@ namespace BTLT04
                 DrawLanes(g);
 
                 // Vẽ zombies TRƯỚC (để player ở trên)
-                _mainPlayer.Draw(g);
                 _zombieSpawner.Draw(g);
-                _rmTower.Draw(g);
+                _mainPlayer.Draw(g);
             }
         }
 
@@ -253,6 +377,12 @@ namespace BTLT04
 
             // Debug: hiển thị phím
             this.InvokeIfRequired(() => lbState.Text = e.KeyCode.ToString());
+
+            // ⭐ Cheat code: Nhấn R để restart
+            if (e.KeyCode == Keys.R && _gameOver)
+            {
+                RestartGame();
+            }
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -275,9 +405,21 @@ namespace BTLT04
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (_gameOver) return; // Không cho pause khi game over
+
             _playing = !_playing;
             if (_playing) btnPlay.Text = "Stop";
             else btnPlay.Text = "Continue";
+        }
+
+        private void lbWaveCount_Click(object sender, EventArgs e)
+        {
+            if (_gameOver) return;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

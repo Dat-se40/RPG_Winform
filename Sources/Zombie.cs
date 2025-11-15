@@ -131,12 +131,12 @@ internal class Zombie
         {
             Health = 0;
             State = ZombieState.Dead;
+            StateMachine.ChangeState("Dead");
         }
     }
     
     public void Draw(Graphics g)
     {
-        // Không vẽ nếu đã chết quá lâu
         if (State == ZombieState.Dead && _deadTimer > DeadDuration)
             return;
             
