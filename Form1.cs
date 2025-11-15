@@ -138,6 +138,27 @@ namespace BTLT04
                     zombie.State = Zombie.ZombieState.Walking; // Cập nhật di chuyển sau khi người chơi rời 
                 }
             }
+            // === Kiểm tra va chạm giữa đạn và zombie ===
+            foreach (var proj in _mainPlayer.Projectiles.ToList())
+            {
+                Rectangle projRect = proj.GetHitbox();
+
+                foreach (var zombie in _zombieSpawner.Zombies.ToList())
+                {
+                    if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
+                        continue;
+
+                    Rectangle zombieRect = zombie.StateMachine.SpriteRenderer.GetHitbox();
+
+                    if (projRect.IntersectsWith(zombieRect))
+                    {
+                        zombie.TakeDamage(proj.Damage);
+                        proj.Expire();
+                        break;
+                    }
+                }
+            }
+
         }
 
         /// <summary>

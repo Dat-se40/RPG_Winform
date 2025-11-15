@@ -19,6 +19,7 @@ namespace BTLT04.Components
         private readonly Bitmap _spriteSheet;
         private float _frameTimer = 0f;
         private const float FrameDuration = 0.1f; // 10 FPS
+        private readonly float _speedScale = 1f; //tốc độ animation
 
         // OffsetX hitbox đúng hơn
         public int HitboxOffsetX { get; set; } = 0;
@@ -26,13 +27,15 @@ namespace BTLT04.Components
         public int HitboxWidth { get; set; }
         public int HitboxHeight { get; set; }
 
-        public SpriteRenderer(Bitmap sheet, int frameCount, Transform transform)
+        public SpriteRenderer(Bitmap sheet, int frameCount, Transform transform, float speedScale = 1f)
         {
             _spriteSheet = sheet ?? throw new ArgumentNullException(nameof(sheet));
             if (frameCount <= 0) throw new ArgumentOutOfRangeException(nameof(frameCount));
             _transform = transform ?? throw new ArgumentNullException(nameof(transform));
 
             FrameCount = frameCount;
+            _speedScale = speedScale;
+
             SetupFrames();
             HitboxWidth = FrameWidth;
             HitboxHeight = FrameHeight;
@@ -47,7 +50,7 @@ namespace BTLT04.Components
 
         public void Update(float deltaTime)
         {
-            _frameTimer += deltaTime;
+            _frameTimer += deltaTime * _speedScale; // thêm *
             if (_frameTimer >= FrameDuration)
             {
                 CurrentFrame = (CurrentFrame + 1) % FrameCount;
