@@ -93,6 +93,8 @@ namespace BTLT04
                 CheckCollisions();
                 _rmTower.Update(dt);
                 _accumulator -= TargetFrameTimeMs;
+                lbWaveCount.Text = $"Wave hiện tại {_zombieSpawner.CurrentWave}/{_zombieSpawner.TotalWaves} ";
+                lbZombieCount.Text = "Số zombie hiện tại" + _zombieSpawner._zombiesSpawned;
             }
             RenderFrame();
             Invalidate();
