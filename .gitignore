@@ -4,4 +4,6 @@ bin/
 .vs/
 obj/
 .idea
+*.csproj*
+*sln.DotSettings.user
 
