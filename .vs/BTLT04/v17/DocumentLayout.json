@@ -31,7 +31,7 @@
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|D:\\third\\M\\IT008\\BTLT04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -73,8 +73,7 @@
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
               "RelativeToolTip": "Sources\\Player\\Attack_1.png",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-14T09:04:04.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T09:04:04.697Z"
             },
             {
               "$type": "Document",
@@ -85,8 +84,7 @@
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Building\\RedMoonTower.png",
               "RelativeToolTip": "Sources\\Building\\RedMoonTower.png",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-11-14T09:03:58.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T09:03:58.662Z"
             },
             {
               "$type": "Document",
@@ -98,8 +96,7 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:47:15.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:47:15.421Z"
             },
             {
               "$type": "Document",
@@ -124,8 +121,7 @@
               "RelativeToolTip": "Sources\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:41:34.225Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:41:34.225Z"
             },
             {
               "$type": "Document",
@@ -137,8 +133,7 @@
               "RelativeToolTip": "Sources\\Wave.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAIwBsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:41:17.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:41:17.314Z"
             },
             {
               "$type": "Document",
@@ -150,8 +145,7 @@
               "RelativeToolTip": "Sources\\ZombieSpawner.cs",
               "ViewState": "AgIAAKoAAAAAAAAAAAAswBEAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:32:56.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:32:56.033Z"
             },
             {
               "$type": "Document",
@@ -163,8 +157,7 @@
               "RelativeToolTip": "Sources\\Zombie.cs",
               "ViewState": "AgIAAF4AAAAAAAAAAAAswHAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:32:45.302Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:32:45.302Z"
             },
             {
               "$type": "Document",
@@ -176,8 +169,7 @@
               "RelativeToolTip": "Sources\\ZombieData.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAUwEAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:32:43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T08:32:43Z"
             },
             {
               "$type": "Document",
@@ -188,8 +180,7 @@
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T08:32:34.138Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-14T08:32:34.138Z"
             }
           ]
         },

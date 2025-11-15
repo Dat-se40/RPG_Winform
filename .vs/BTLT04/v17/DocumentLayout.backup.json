@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\third\\M\\IT008\\BTLT04\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player\\attack_1.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\building\\redmoontower.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\building\\redmoontower.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombiespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombiespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\wave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\wave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,24 +35,12 @@
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombiespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombiespawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombiedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombiedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\zombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\wave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\wave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|d:\\third\\m\\it008\\btlt04\\sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86325DC3-7135-4551-ACDA-35DF1320F6AD}|BTLT04.csproj|solutionrelative:sources\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +66,31 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Attack_1.png",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
+              "RelativeDocumentMoniker": "Sources\\Player\\Attack_1.png",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player\\Attack_1.png",
+              "RelativeToolTip": "Sources\\Player\\Attack_1.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-11-14T09:04:04.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "RedMoonTower.png",
+              "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Building\\RedMoonTower.png",
+              "RelativeDocumentMoniker": "Sources\\Building\\RedMoonTower.png",
+              "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Building\\RedMoonTower.png",
+              "RelativeToolTip": "Sources\\Building\\RedMoonTower.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-11-14T09:03:58.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -71,20 +103,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAcwIsAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAANUAAAAAAAAAAAAkwIQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T08:44:43.882Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Player.cs",
               "RelativeDocumentMoniker": "Sources\\Player.cs",
@@ -97,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Wave.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Wave.cs",
               "RelativeDocumentMoniker": "Sources\\Wave.cs",
@@ -116,14 +148,14 @@
               "RelativeDocumentMoniker": "Sources\\ZombieSpawner.cs",
               "ToolTip": "D:\\third\\M\\IT008\\BTLT04\\Sources\\ZombieSpawner.cs",
               "RelativeToolTip": "Sources\\ZombieSpawner.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAswBEAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T08:32:56.033Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Zombie.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\Zombie.cs",
               "RelativeDocumentMoniker": "Sources\\Zombie.cs",
@@ -136,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "ZombieData.cs",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Sources\\ZombieData.cs",
               "RelativeDocumentMoniker": "Sources\\ZombieData.cs",
@@ -149,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\third\\M\\IT008\\BTLT04\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
