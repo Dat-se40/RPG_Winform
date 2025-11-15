@@ -38,24 +38,48 @@ internal class Zombie
         StateMachine.AddState("Dead", data.DeadSpritePath, data.DeadFrameCount);
             
         StateMachine.ChangeState("Idle");
-        SetHixBox();
+        
+        StateMachine.OnStateChanged += UpdateHitBox;
+        UpdateHitBox();
+        // SetHixBox();
     }
-    void SetHixBox()
+    
+    void UpdateHitBox()
     {
-        // Cập nhật các công thức tính 
-        void SetHixBox()
+        var renderer = StateMachine.SpriteRenderer;
+            
+        // Điều chỉnh hitbox theo type của zombie
+        switch (Data.Type)
         {
-            // Xác định phần thân thực của zombie (bỏ khoảng trắng xung quanh).
-
-            var renderer = StateMachine.SpriteRenderer;
-
-            // Ví dụ sẽ thay số sau
-            renderer.HitboxOffsetX = 12;  // pixel tính từ cạnh trái của frame
-            renderer.HitboxOffsetY = 5;   // pixel tính từ cạnh trên frame
-            renderer.HitboxWidth = 45;  // chiều rộng phần thân zombie
-            renderer.HitboxHeight = 85;  // chiều cao thực tế
+            case ZombieType.Normal:
+                renderer.HitboxOffsetX = 60;
+                renderer.HitboxOffsetY = 45;
+                renderer.HitboxWidth = 36;
+                renderer.HitboxHeight = 90;
+                break;
+                    
+            case ZombieType.Fast:
+                renderer.HitboxOffsetX = 30;
+                renderer.HitboxOffsetY = 5;
+                renderer.HitboxWidth = 50;
+                renderer.HitboxHeight = 80;
+                break;
         }
     }
+    
+    // void SetHixBox()
+    // {
+    //     // Cập nhật các công thức tính 
+    //     var sprite = StateMachine.SpriteRenderer;
+    //
+    //     // Offset: vị trí bắt đầu của hitbox trong frame
+    //     sprite.HitboxOffsetX = 60; 
+    //     sprite.HitboxOffsetY = 60;
+    //
+    //     // Width/Height: kích thước vùng hitbox (không trừ offset!)
+    //     sprite.HitboxWidth = 36;   // Ví dụ: từ x=100 đến x=180
+    //     sprite.HitboxHeight = 90;
+    // }
     public void Update(float deltaTime)
     {
         // Xử lý animation chết
