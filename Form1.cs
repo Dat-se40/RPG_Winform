@@ -93,6 +93,8 @@ namespace BTLT04
                 CheckCollisions();
                 _rmTower.Update(dt);
                 _accumulator -= TargetFrameTimeMs;
+                lbWaveCount.Text = $"Wave hiện tại {_zombieSpawner.CurrentWave}/{_zombieSpawner.TotalWaves} ";
+                lbZombieCount.Text = "Số zombie hiện tại" + _zombieSpawner._zombiesSpawned;
             }
             RenderFrame();
             Invalidate();
@@ -137,6 +139,27 @@ namespace BTLT04
                 }
                 
             }
+            // === Kiểm tra va chạm giữa đạn và zombie ===
+            foreach (var proj in _mainPlayer.Projectiles.ToList())
+            {
+                Rectangle projRect = proj.GetHitbox();
+
+                foreach (var zombie in _zombieSpawner.Zombies.ToList())
+                {
+                    if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
+                        continue;
+
+                    Rectangle zombieRect = zombie.StateMachine.SpriteRenderer.GetHitbox();
+
+                    if (projRect.IntersectsWith(zombieRect))
+                    {
+                        zombie.TakeDamage(proj.Damage);
+                        proj.Expire();
+                        break;
+                    }
+                }
+            }
+
         }
 
         /// <summary>

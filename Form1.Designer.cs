@@ -30,6 +30,8 @@
         {
             lbState = new Label();
             btnPlay = new Button();
+            lbWaveCount = new Label();
+            lbZombieCount = new Label();
             SuspendLayout();
             // 
             // lbState
@@ -51,11 +53,31 @@
             btnPlay.UseVisualStyleBackColor = true;
             btnPlay.Click += button1_Click;
             // 
+            // lbWaveCount
+            // 
+            lbWaveCount.AutoSize = true;
+            lbWaveCount.Location = new Point(502, 35);
+            lbWaveCount.Name = "lbWaveCount";
+            lbWaveCount.Size = new Size(78, 15);
+            lbWaveCount.TabIndex = 2;
+            lbWaveCount.Text = "Wave hiện tại";
+            // 
+            // lbZombieCount
+            // 
+            lbZombieCount.AutoSize = true;
+            lbZombieCount.Location = new Point(626, 35);
+            lbZombieCount.Name = "lbZombieCount";
+            lbZombieCount.Size = new Size(106, 15);
+            lbZombieCount.TabIndex = 3;
+            lbZombieCount.Text = "Số Zombie hiện tại";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lbZombieCount);
+            Controls.Add(lbWaveCount);
             Controls.Add(btnPlay);
             Controls.Add(lbState);
             Name = "Form1";
@@ -68,5 +90,7 @@
 
         private Label lbState;
         private Button btnPlay;
+        private Label lbWaveCount;
+        private Label lbZombieCount;
     }
 }

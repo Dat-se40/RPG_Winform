@@ -36,7 +36,7 @@ internal class ZombieData
     {
         Type = ZombieType.Normal,
         Name = "Normal",
-        MaxHealth = 100,
+        MaxHealth = 5,
         Speed = 30f,
         Damage = 10,
         SpawnWeight = 0.6f,
@@ -57,7 +57,7 @@ internal class ZombieData
     {
         Type = ZombieType.Fast,
         Name = "Fast",
-        MaxHealth = 60,
+        MaxHealth = 2,
         Speed = 60f, // Di chuyển nhanh
         Damage = 5,
         SpawnWeight = 0.25f,

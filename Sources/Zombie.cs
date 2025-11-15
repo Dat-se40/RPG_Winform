@@ -152,4 +152,7 @@ internal class Zombie
     {
         return (!IsAlive && _deadTimer > DeadDuration) || IsOffScreen();
     }
+
+
+
 }
