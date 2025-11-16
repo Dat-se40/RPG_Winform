@@ -1,4 +1,6 @@
-﻿namespace BTLT04.Sources;
+﻿using BTLT04.Components;
+
+namespace BTLT04.Sources;
 
 internal class ZombieSpawner
 {
@@ -169,7 +171,7 @@ internal class ZombieSpawner
 
         System.Diagnostics.Debug.WriteLine(
             $"\n=== WAVE {_currentWave.WaveNumber} START - {_currentWave.TotalZombies} ZOMBIES ===");
-
+        SoundManager.Instance.PlayEffectDirect(Form1.AbsPath(@"Sources\Sound\zombie.ogg")); 
         // In thông tin chi tiết về wave
         foreach (var spawn in _currentWave.Spawns)
         {
@@ -267,9 +269,9 @@ internal class ZombieSpawner
         _waves.Add(wave);
     }
 
-    private void RemoveZombie(Zombie zombie)
+    // Change the access modifier of RemoveZombie from private to public
+    public void RemoveZombie(Zombie zombie)
     {
-        _zombiesInLane[zombie.LaneIndex]--;
         _zombies.Remove(zombie);
     }
 

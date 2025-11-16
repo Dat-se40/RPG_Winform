@@ -1,4 +1,4 @@
-﻿#region SpriteRenderer.cs - Frame Animation with Delta Time
+﻿
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -132,4 +132,3 @@ namespace BTLT04.Components
         }
     }
 }
-#endregion

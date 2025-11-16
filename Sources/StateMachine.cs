@@ -17,7 +17,7 @@ internal class StateMachine
         _transform = transform;
         SpriteRenderer = new SpriteRenderer(new Bitmap(1, 1), 1, transform);
     }
-
+    public bool isLastFrame => SpriteRenderer.isLastFrame(); 
     public void AddState(string name, string path, int frameCount, float speed = 1f)
     {
         if (_states.ContainsKey(name)) return;

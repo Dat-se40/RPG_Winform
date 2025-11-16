@@ -1,5 +1,7 @@
-﻿using BTLT04.Components;
+﻿using BTLT04;
+using BTLT04.Components;
 using BTLT04.Sources;
+using System.IO;
 using Transform = BTLT04.Components.Transform; 
 internal class Player
 {
@@ -138,7 +140,7 @@ internal class Player
 
         // chuyển animation tấn công
         StateMachine.ChangeState("Attack" + type.ToString());
-
+        SoundManager.Instance.PlayEffectDirect(Form1.AbsPath(@"Sources\Sound\skill.wav")); 
         // đặt thời gian trễ theo animation
         int delayMs = (type == 1) ? 200 : 200; // Q=0.6 s, E=0.2 s
 

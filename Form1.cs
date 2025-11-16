@@ -5,7 +5,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using BTLT04.Sources;
 using Timer = System.Windows.Forms.Timer;
 using System.Security.Cryptography;
 
@@ -33,20 +32,32 @@ namespace BTLT04
         private int _currentHealth = 200;
         private const int HealthPerZombie = 10; // Mỗi zombie qua trừ 10 máu
 
-        // Giới hạn vùng chơi (trừ viền sprite)
-        private Rectangle PlayArea => ClientRectangle;
+        // Giới hạn vùng chơi (trừ viền sprite), lấy lbCurrHP làm móc
+        private Rectangle PlayArea => CalcPlayArea(); 
 
         // Nút hoạt động
         private bool _playing = true;
         private bool _gameOver = false;
-
+        // Background
+        string path;
         public Form1()
         {
             InitializeComponent();
             InitGame();
             this.KeyPreview = true;
+            this.BackgroundImage = Image.FromFile(AbsPath(rePath: @"Sources\\Background\\R.png"));
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            
         }
-
+        private Rectangle CalcPlayArea() 
+        {
+            return new Rectangle(
+                ClientRectangle.X + lbCurrHp.Bounds.X,
+                ClientRectangle.Y,
+                ClientRectangle.Width - lbCurrHp.Bounds.X,
+                ClientRectangle.Height
+            );
+        }
         /// <summary>
         /// Khởi tạo toàn bộ game: style, buffer, player, timer
         /// </summary>
@@ -79,6 +90,7 @@ namespace BTLT04
 
             // Đăng ký sự kiện resize
             SizeChanged += OnFormResized;
+
         }
 
         /// <summary>
@@ -116,17 +128,17 @@ namespace BTLT04
         {
             foreach (var zombie in _zombieSpawner.Zombies.ToList())
             {
-                // Bỏ qua zombie đã chết
+                // Skip zombie chết
                 if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
                     continue;
 
-                // Kiểm tra zombie đã qua bên trái
-                if (zombie.Transform.Position.X < -50) // Cho phép đi qua 1 chút
+                // Khi zombie đi qua bên trái màn hình
+                if (zombie.Transform.Position.X < lbCurrHp.Bounds.X)
                 {
                     TakeDamage(HealthPerZombie);
 
-                    // Đánh dấu zombie để remove (tránh trừ máu nhiều lần)
-                    zombie.TakeDamage(999999); // Kill luôn
+                    // Xóa zombie khỏi game ngay lập tức
+                    _zombieSpawner.RemoveZombie(zombie);
 
                     Debug.WriteLine($"⚠️ Zombie escaped! Health: {_currentHealth}/{_maxHealth}");
                 }
@@ -157,7 +169,7 @@ namespace BTLT04
         {
             this.InvokeIfRequired(() =>
             {
-                lbCurrHp.Text = $" HP nhà chính: {_currentHealth}/{_maxHealth}";
+                lbCurrHp.Text = $" Sinh mệnh hiện tại: {_currentHealth}/{_maxHealth}";
 
                 // Đổi màu label theo máu
                 if (_currentHealth > 60)
@@ -179,10 +191,10 @@ namespace BTLT04
             _gameTimer?.Stop();
 
             var result = MessageBox.Show(
-                $"Game Over!\n\nBạn đã hết máu!\nZombies spawned: {_zombieSpawner._zombiesSpawned}\n\nChơi lại?",
+                $"Game Over!\nChơi lại?",
                 "Game Over",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Error
+                MessageBoxIcon.Question
             );
 
             if (result == DialogResult.Yes)
@@ -241,16 +253,13 @@ namespace BTLT04
                 var zombiePos = zombie.Transform.Position;
                 var zombieRenderer = zombie.StateMachine.SpriteRenderer;
                 Rectangle zombieRect = zombieRenderer.GetHitbox();
-
+                
+                // Đòn tấn công cuối cùng của zombie mới gây damage
+                if (zombie.State == Zombie.ZombieState.Attacking && zombie.StateMachine.isLastFrame) TakeDamage(5);
                 // Player chạm zombie
-                if (playerRect.IntersectsWith(zombieRect))
+                if (playerRect.IntersectsWith(zombieRect) )
                 {
                     zombie.State = Zombie.ZombieState.Attacking;
-                    // TODO: Gây damage cho player (va chạm trực tiếp)
-                    // TakeDamage(1); 
-                    // _currentHealth -= HealthPerZombie;
-                    // double dmg = 0.1;
-                    TakeDamage(1);
                 }
                 else
                 {
@@ -297,9 +306,9 @@ namespace BTLT04
         {
             using (Graphics g = Graphics.FromImage(_backBuffer))
             {
-                g.Clear(Color.CornflowerBlue); // nền
+                g.Clear(Color.Transparent); 
 
-                DrawLanes(g);
+                //DrawLanes(g);
 
                 // Vẽ zombies TRƯỚC (để player ở trên)
                 _zombieSpawner.Draw(g);
@@ -310,20 +319,20 @@ namespace BTLT04
         /// <summary>
         /// Vẽ các lanes như PvZ (optional)
         /// </summary>
-        private void DrawLanes(Graphics g)
-        {
-            const int TotalLanes = 5;
-            float laneHeight = ClientSize.Height / (float)TotalLanes;
+        //private void DrawLanes(Graphics g)
+        //{
+        //    const int TotalLanes = 5;
+        //    float laneHeight = ClientSize.Height / (float)TotalLanes;
 
-            using (Pen lanePen = new Pen(Color.FromArgb(50, Color.Black), 2))
-            {
-                for (int i = 1; i < TotalLanes; i++)
-                {
-                    float y = i * laneHeight;
-                    g.DrawLine(lanePen, 0, y, PlayArea.Width, y);
-                }
-            }
-        }
+        //    using (Pen lanePen = new Pen(Color.FromArgb(50, Color.Black), 2))
+        //    {
+        //        for (int i = 1; i < TotalLanes; i++)
+        //        {
+        //            float y = i * laneHeight;
+        //            g.DrawLine(lanePen, 0, y, PlayArea.Width, y);
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// WinForms gọi khi cần vẽ → copy back-buffer ra màn hình
@@ -411,8 +420,8 @@ namespace BTLT04
             if (_gameOver) return; // Không cho pause khi game over
 
             _playing = !_playing;
-            if (_playing) btnPlay.Text = "Stop";
-            else btnPlay.Text = "Continue";
+            if (_playing) btnPlay.Text = "Dừng";
+            else btnPlay.Text = "Tiếp tục";
         }
 
         private void lbWaveCount_Click(object sender, EventArgs e)
@@ -423,9 +432,22 @@ namespace BTLT04
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            SoundManager.Instance.PlayBackground(
+                AbsPath(@"Sources\Sound\background.mp3"), loop: true);
+        }
+
+        private void btnGuide_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Nhiệm vụ của bản là bảo vể bản thân và không cho zombie tấn công nhà bạn!\n" +
+             "W/S/D/A: lên/xuống/trái phải \n" +
+             "Q/E: kích hoạt kĩ năng tấn công \n",
+             "Hướng dẫn", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public static string AbsPath(string rePath)
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\" + rePath);
         }
     }
-
     /// <summary>
     /// Helper: Invoke nếu cần (tránh cross-thread)
     /// </summary>
@@ -439,5 +461,6 @@ namespace BTLT04
                 action();
         }
     }
+   
 }
 #endregion

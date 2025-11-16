@@ -33,6 +33,7 @@
             lbWaveCount = new Label();
             lbCurrHp = new Label();
             panel1 = new Panel();
+            btnGuide = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             btnPlay.Dock = DockStyle.Right;
             btnPlay.Location = new Point(723, 0);
             btnPlay.Name = "btnPlay";
-            btnPlay.Size = new Size(75, 26);
+            btnPlay.Size = new Size(75, 32);
             btnPlay.TabIndex = 1;
             btnPlay.Text = "Stop";
             btnPlay.UseVisualStyleBackColor = false;
@@ -79,22 +80,37 @@
             // 
             // panel1
             // 
+            panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(224, 224, 224);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnGuide);
             panel1.Controls.Add(lbState);
             panel1.Controls.Add(lbWaveCount);
             panel1.Controls.Add(btnPlay);
             panel1.Controls.Add(lbCurrHp);
             panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 28);
+            panel1.Size = new Size(800, 34);
             panel1.TabIndex = 4;
+            // 
+            // btnGuide
+            // 
+            btnGuide.BackColor = Color.Silver;
+            btnGuide.Dock = DockStyle.Right;
+            btnGuide.Location = new Point(648, 0);
+            btnGuide.Name = "btnGuide";
+            btnGuide.Size = new Size(75, 32);
+            btnGuide.TabIndex = 5;
+            btnGuide.Text = "Hướng dẫn";
+            btnGuide.UseVisualStyleBackColor = false;
+            btnGuide.Click += btnGuide_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(936, 495);
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Wizard vs Zombie";
@@ -102,6 +118,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -111,5 +128,6 @@
         private Label lbWaveCount;
         private Label lbCurrHp;
         private Panel panel1;
+        private Button btnGuide;
     }
 }
