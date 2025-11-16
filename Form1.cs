@@ -12,10 +12,8 @@ namespace BTLT04
 {
     public partial class Form1 : Form
     {
-        // Back-buffer để vẽ offline → chống flicker
         private Bitmap _backBuffer;
 
-        // Đo thời gian thực tế giữa các frame → delta time
         private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
 
         // Tích lũy thời gian để cố định logic update (60 FPS)
@@ -27,7 +25,7 @@ namespace BTLT04
         private ZombieSpawner _zombieSpawner;
         private Timer _gameTimer;
 
-        // ⭐ HEALTH SYSTEM
+        // HEALTH SYSTEM
         private int _maxHealth = 200;
         private int _currentHealth = 200;
         private const int HealthPerZombie = 10; // Mỗi zombie qua trừ 10 máu
@@ -98,6 +96,7 @@ namespace BTLT04
         /// </summary>
         private void GameLoop(object sender, EventArgs e)
         {
+            CheckWinCondition(); 
             if (!_playing || _gameOver) return;
 
             // Tính delta time (ms)
@@ -271,7 +270,7 @@ namespace BTLT04
                 }
             }
 
-            // === Kiểm tra va chạm giữa đạn và zombie ===
+            // Kiểm tra va chạm giữa đạn và zombie 
             foreach (var proj in _mainPlayer.Projectiles.ToList())
             {
                 if (proj.IsExpired) continue;
@@ -308,14 +307,62 @@ namespace BTLT04
             {
                 g.Clear(Color.Transparent); 
 
-                //DrawLanes(g);
-
                 // Vẽ zombies TRƯỚC (để player ở trên)
                 _mainPlayer.Draw(g);
                 _zombieSpawner.Draw(g);
             }
         }
 
+        /// <summary>
+        /// Game Win - Khi hoàn thành tất cả wave
+        /// </summary>
+        private void GameWin()
+        {
+            _playing = false;
+            _gameTimer?.Stop();
+
+            SoundManager.Instance.StopBackground();
+
+            try
+            {
+                SoundManager.Instance.PlayEffectDirect(AbsPath(@"Sources\Sound\victory.wav"));
+            }
+            catch { }
+
+            string message = $"🎉 CHIẾN THẮNG! 🎉\n\n" +
+                            $"✅ Bạn đã vượt qua tất cả {_zombieSpawner.TotalWaves} wave!\n" +
+                            $"💚 Máu còn lại: {_currentHealth}/{_maxHealth}\n\n" +
+                            $"Bạn có muốn chơi lại không?";
+
+            var result = MessageBox.Show(
+                message,
+                "🏆 Victory!",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                RestartGame();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        /// <summary>
+        /// ⭐ Kiểm tra win condition
+        /// </summary>
+        private void CheckWinCondition()
+        {
+            // Nếu đã qua hết wave và không còn zombie nào
+            if (_zombieSpawner.IsGameComplete && !_gameOver)
+            {
+                _gameOver = true; // Đánh dấu để không check nữa
+                GameWin();
+            }
+        }
         /// <summary>
         /// WinForms gọi khi cần vẽ → copy back-buffer ra màn hình
         /// </summary>

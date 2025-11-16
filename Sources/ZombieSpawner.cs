@@ -1,4 +1,5 @@
-﻿using BTLT04.Components;
+﻿
+using BTLT04.Components;
 
 namespace BTLT04.Sources;
 
@@ -17,7 +18,7 @@ internal class ZombieSpawner
     // Wave system
     public int _currentWaveIndex = 0;
     private Wave _currentWave;
-    public  int _zombiesSpawned = 0;
+    public int _zombiesSpawned = 0;
     private bool _isWaveActive = false;
 
     // Spawn timing
@@ -26,7 +27,11 @@ internal class ZombieSpawner
 
     // Lane tracking
     private readonly int[] _zombiesInLane = new int[TotalLanes];
-    private const int MaxZombiesPerLane = 8;
+    private const int MaxZombiesPerLane = 6; // ⭐ Giảm từ 8 → 6 để tránh nghẽn
+
+    // ⭐ Thêm retry mechanism
+    private int _spawnRetries = 0;
+    private const int MaxSpawnRetries = 10;
 
     public IReadOnlyList<Zombie> Zombies => _zombies;
     public int CurrentWave => _currentWaveIndex + 1;
@@ -45,7 +50,7 @@ internal class ZombieSpawner
     /// </summary>
     private void InitializeWaves()
     {
-        // Wave 1: 
+        // Wave 1: Tutorial
         _waves.Add(new Wave(1)
         {
             SpawnInterval = 3f,
@@ -53,42 +58,41 @@ internal class ZombieSpawner
         }
         .AddZombieType(ZombieData.NormalZombie, 10));
 
-        // Wave 2: 
+        // Wave 2: Thêm fast zombie
         _waves.Add(new Wave(2)
         {
             SpawnInterval = 2.5f,
-            WaveCooldown = 12f
+            WaveCooldown = 10f
         }
         .AddZombieType(ZombieData.NormalZombie, 12)
         .AddZombieType(ZombieData.FastZombie, 3));
 
-        // Wave 3: 
+        // Wave 3: Tăng số lượng
         _waves.Add(new Wave(3)
         {
             SpawnInterval = 2.2f,
-            WaveCooldown = 15f
+            WaveCooldown = 10f
         }
         .AddZombieType(ZombieData.NormalZombie, 10)
         .AddZombieType(ZombieData.FastZombie, 8));
 
-        // Wave 4: 
+        // Wave 4: ⭐ Fix spawn interval
         _waves.Add(new Wave(4)
         {
-            SpawnInterval = 2f,
-            WaveCooldown = 15f
+            SpawnInterval = 2.5f, // Tăng từ 2f → 2.5f
+            WaveCooldown = 10f
         }
         .AddZombieType(ZombieData.NormalZombie, 8)
         .AddZombieType(ZombieData.FastZombie, 12));
 
-        // Wave 5: 
+        // Wave 5: Final wave
         _waves.Add(new Wave(5)
         {
-            SpawnInterval = 1.5f,
-            WaveCooldown = 20f
+            SpawnInterval = 2f, // Tăng từ 1.5f → 2f
+            WaveCooldown = 10f
         }
         .AddZombieType(ZombieData.NormalZombie, 15)
         .AddZombieType(ZombieData.FastZombie, 15));
-
     }
 
     public void UpdatePlayArea(Rectangle playArea)
@@ -122,7 +126,7 @@ internal class ZombieSpawner
         {
             if (_zombies.Count == 0)
             {
-                System.Diagnostics.Debug.WriteLine("\n=== ALL WAVES COMPLETED! YOU WIN! ===\n");
+                System.Diagnostics.Debug.WriteLine("\n🎉 === ALL WAVES COMPLETED! YOU WIN! === 🎉\n");
             }
             return;
         }
@@ -139,9 +143,16 @@ internal class ZombieSpawner
             return;
         }
 
-        // Nếu đã spawn đủ zombie trong wave
+        // ⭐ FIX: Kiểm tra wave hoàn thành
         if (_zombiesSpawned >= _currentWave.TotalZombies)
         {
+            // Debug log
+            if (_zombies.Count > 0)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"⏳ Wave {_currentWave.WaveNumber}: Waiting for {_zombies.Count} zombies to die...");
+            }
+
             // Chờ tất cả zombie chết mới kết thúc wave
             if (_zombies.Count == 0)
             {
@@ -155,9 +166,38 @@ internal class ZombieSpawner
 
         if (_spawnTimer >= _currentWave.SpawnInterval)
         {
-            SpawnZombieInRandomLane();
-            _spawnTimer = 0f;
-            _zombiesSpawned++;
+            // ⭐ FIX: Dùng bool để biết spawn thành công hay không
+            bool spawned = TrySpawnZombie();
+
+            if (spawned)
+            {
+                _zombiesSpawned++;
+                _spawnRetries = 0; // Reset retry counter
+                _spawnTimer = 0f;
+
+                System.Diagnostics.Debug.WriteLine(
+                    $"✅ [Wave {_currentWave.WaveNumber}] Spawned zombie {_zombiesSpawned}/{_currentWave.TotalZombies} | Alive: {_zombies.Count}");
+            }
+            else
+            {
+                // ⭐ Retry sau 0.5s thay vì bỏ qua
+                _spawnRetries++;
+                _spawnTimer = _currentWave.SpawnInterval - 0.5f; // Thử lại sau 0.5s
+
+                if (_spawnRetries >= MaxSpawnRetries)
+                {
+                    // Nếu retry quá nhiều, force spawn vào lane ít zombie nhất
+                    ForceSpawnZombie();
+                    _zombiesSpawned++;
+                    _spawnRetries = 0;
+                    _spawnTimer = 0f;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        $"⚠️ All lanes full! Retry {_spawnRetries}/{MaxSpawnRetries}...");
+                }
+            }
         }
     }
 
@@ -168,10 +208,20 @@ internal class ZombieSpawner
         _isWaveActive = true;
         _waveTimer = 0f;
         _spawnTimer = 0f;
+        _spawnRetries = 0; // ⭐ Reset retry counter
 
         System.Diagnostics.Debug.WriteLine(
-            $"\n=== WAVE {_currentWave.WaveNumber} START - {_currentWave.TotalZombies} ZOMBIES ===");
-        SoundManager.Instance.PlayEffectDirect(Form1.AbsPath(@"Sources\Sound\zombie.ogg")); 
+            $"\n🧟 === WAVE {_currentWave.WaveNumber} START - {_currentWave.TotalZombies} ZOMBIES === 🧟");
+
+        try
+        {
+            SoundManager.Instance.PlayEffectDirect(Form1.AbsPath(@"Sources\Sound\zombie.ogg"));
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Sound error: {ex.Message}");
+        }
+
         // In thông tin chi tiết về wave
         foreach (var spawn in _currentWave.Spawns)
         {
@@ -184,7 +234,7 @@ internal class ZombieSpawner
     private void EndWave()
     {
         System.Diagnostics.Debug.WriteLine(
-            $"\n>>> Wave {_currentWave.WaveNumber} Complete!");
+            $"\n✅ >>> Wave {_currentWave.WaveNumber} Complete!");
 
         _currentWaveIndex++;
 
@@ -203,7 +253,10 @@ internal class ZombieSpawner
         _waveTimer = 0f;
     }
 
-    public void SpawnZombieInRandomLane()
+    /// <summary>
+    /// ⭐ Thử spawn zombie, trả về true nếu thành công
+    /// </summary>
+    private bool TrySpawnZombie()
     {
         var availableLanes = new List<int>();
         for (int i = 0; i < TotalLanes; i++)
@@ -214,17 +267,46 @@ internal class ZombieSpawner
             }
         }
 
-        if (availableLanes.Count == 0) return;
+        if (availableLanes.Count == 0)
+        {
+            return false; // Không có lane khả dụng
+        }
 
         int laneIndex = availableLanes[_random.Next(availableLanes.Count)];
-        SpawnZombieInLane(laneIndex);
+        return SpawnZombieInLane(laneIndex);
     }
 
-    public void SpawnZombieInLane(int laneIndex)
+    /// <summary>
+    /// ⭐ Force spawn vào lane ít zombie nhất
+    /// </summary>
+    private void ForceSpawnZombie()
     {
-        if (laneIndex < 0 || laneIndex >= TotalLanes) return;
-        if (_zombiesInLane[laneIndex] >= MaxZombiesPerLane) return;
-        if (_currentWave == null) return;
+        // Tìm lane có ít zombie nhất
+        int minLane = 0;
+        int minCount = _zombiesInLane[0];
+
+        for (int i = 1; i < TotalLanes; i++)
+        {
+            if (_zombiesInLane[i] < minCount)
+            {
+                minCount = _zombiesInLane[i];
+                minLane = i;
+            }
+        }
+
+        System.Diagnostics.Debug.WriteLine(
+            $"🔴 Force spawning in lane {minLane + 1} (has {minCount} zombies)");
+
+        SpawnZombieInLane(minLane);
+    }
+
+    /// <summary>
+    /// ⭐ Spawn zombie trong lane, trả về bool
+    /// </summary>
+    public bool SpawnZombieInLane(int laneIndex)
+    {
+        if (laneIndex < 0 || laneIndex >= TotalLanes) return false;
+        if (_currentWave == null) return false;
 
         var zombieData = _currentWave.GetRandomZombieType(_random);
         float laneY = _firstLaneY + (laneIndex * _laneHeight);
@@ -234,8 +316,7 @@ internal class ZombieSpawner
         _zombies.Add(zombie);
         _zombiesInLane[laneIndex]++;
 
-        System.Diagnostics.Debug.WriteLine(
-            $"[Wave {_currentWave.WaveNumber}] Spawned {zombieData.Name} Zombie in Lane {laneIndex + 1} ({_zombiesSpawned + 1}/{_currentWave.TotalZombies})");
+        return true;
     }
 
     /// <summary>
@@ -269,10 +350,21 @@ internal class ZombieSpawner
         _waves.Add(wave);
     }
 
-    // Change the access modifier of RemoveZombie from private to public
+    /// <summary>
+    /// ⭐ Xóa zombie và cập nhật lane counter
+    /// </summary>
     public void RemoveZombie(Zombie zombie)
     {
-        _zombies.Remove(zombie);
+        if (_zombies.Remove(zombie))
+        {
+            // Giảm counter của lane
+            int lane = zombie.LaneIndex;
+            if (lane >= 0 && lane < TotalLanes)
+            {
+                _zombiesInLane[lane]--;
+                if (_zombiesInLane[lane] < 0) _zombiesInLane[lane] = 0;
+            }
+        }
     }
 
     public void Draw(Graphics g)
@@ -300,6 +392,9 @@ internal class ZombieSpawner
         _isWaveActive = false;
         _spawnTimer = 0f;
         _waveTimer = 0f;
+        _spawnRetries = 0; // ⭐ Reset retry counter
+
+        System.Diagnostics.Debug.WriteLine("🔄 ZombieSpawner Reset!");
     }
 
     /// <summary>
