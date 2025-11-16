@@ -1,4 +1,7 @@
-﻿#region Form1.cs - Game Main Loop & Rendering with Health System
+﻿#region Form1.cs: sử lí game 
+/// <summary>
+/// Link Github: https://github.com/Dat-se40/RPG_Winform.git
+/// </summary>
 using BTLT04.Components;
 using BTLT04.Sources;
 using System;
@@ -323,14 +326,8 @@ namespace BTLT04
 
             SoundManager.Instance.StopBackground();
 
-            try
-            {
-                SoundManager.Instance.PlayEffectDirect(AbsPath(@"Sources\Sound\victory.wav"));
-            }
-            catch { }
-
             string message = $"🎉 CHIẾN THẮNG! 🎉\n\n" +
-                            $"✅ Bạn đã vượt qua tất cả {_zombieSpawner.TotalWaves} wave!\n" +
+                            $"✅ Bạn đã vượt qua  {_zombieSpawner.TotalWaves} wave!\n" +
                             $"💚 Máu còn lại: {_currentHealth}/{_maxHealth}\n\n" +
                             $"Bạn có muốn chơi lại không?";
 
