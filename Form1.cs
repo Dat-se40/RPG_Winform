@@ -29,8 +29,8 @@ namespace BTLT04
         private Timer _gameTimer;
 
         // ⭐ HEALTH SYSTEM
-        private int _currentHealth = 100;
-        private int _maxHealth = 100;
+        private int _maxHealth = 200;
+        private int _currentHealth = 200;
         private const int HealthPerZombie = 10; // Mỗi zombie qua trừ 10 máu
 
         // Giới hạn vùng chơi (trừ viền sprite)
@@ -232,7 +232,7 @@ namespace BTLT04
             Rectangle playerRect = playerRenderer.GetHitbox();
 
             // Kiểm tra va chạm với zombies
-            foreach (var zombie in _zombieSpawner.Zombies)
+            foreach (var zombie in _zombieSpawner.Zombies.ToList())
             {
                 // Bỏ qua zombie đã chết
                 if (!zombie.IsAlive || zombie.State == Zombie.ZombieState.Dead)
@@ -248,6 +248,9 @@ namespace BTLT04
                     zombie.State = Zombie.ZombieState.Attacking;
                     // TODO: Gây damage cho player (va chạm trực tiếp)
                     // TakeDamage(1); 
+                    // _currentHealth -= HealthPerZombie;
+                    // double dmg = 0.1;
+                    TakeDamage(1);
                 }
                 else
                 {

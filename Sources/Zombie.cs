@@ -41,7 +41,6 @@ internal class Zombie
         
         StateMachine.OnStateChanged += UpdateHitBox;
         UpdateHitBox();
-        // SetHixBox();
     }
     
     void UpdateHitBox()
@@ -67,19 +66,6 @@ internal class Zombie
         }
     }
     
-    // void SetHixBox()
-    // {
-    //     // Cập nhật các công thức tính 
-    //     var sprite = StateMachine.SpriteRenderer;
-    //
-    //     // Offset: vị trí bắt đầu của hitbox trong frame
-    //     sprite.HitboxOffsetX = 60; 
-    //     sprite.HitboxOffsetY = 60;
-    //
-    //     // Width/Height: kích thước vùng hitbox (không trừ offset!)
-    //     sprite.HitboxWidth = 36;   // Ví dụ: từ x=100 đến x=180
-    //     sprite.HitboxHeight = 90;
-    // }
     public void Update(float deltaTime)
     {
         // Xử lý animation chết

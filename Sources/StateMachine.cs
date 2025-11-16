@@ -31,7 +31,6 @@ internal class StateMachine
         SpriteRenderer = new SpriteRenderer(sheet, count, _transform, speed);
         _currentState = name;
         
-        //
         OnStateChanged?.Invoke(); 
     }
 
