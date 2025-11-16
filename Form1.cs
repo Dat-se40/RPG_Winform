@@ -111,7 +111,7 @@ namespace BTLT04
                 double dt = TargetFrameTimeMs / 1000.0;
                 _mainPlayer.Update(dt);
                 _zombieSpawner.Update((float)dt);
-                lbWaveCount.Text = $"Đợi tấn công: {_zombieSpawner._currentWaveIndex + 1} / {_zombieSpawner.TotalWaves} ";
+                lbWaveCount.Text = $"Đợt tấn công: {_zombieSpawner._currentWaveIndex + 1} / {_zombieSpawner.TotalWaves} ";
                 CheckCollisions();
                 CheckZombiesPassedLeft(); // ⭐ Kiểm tra zombie qua bên trái
                 _accumulator -= TargetFrameTimeMs;
@@ -311,28 +311,10 @@ namespace BTLT04
                 //DrawLanes(g);
 
                 // Vẽ zombies TRƯỚC (để player ở trên)
-                _zombieSpawner.Draw(g);
                 _mainPlayer.Draw(g);
+                _zombieSpawner.Draw(g);
             }
         }
-
-        /// <summary>
-        /// Vẽ các lanes như PvZ (optional)
-        /// </summary>
-        //private void DrawLanes(Graphics g)
-        //{
-        //    const int TotalLanes = 5;
-        //    float laneHeight = ClientSize.Height / (float)TotalLanes;
-
-        //    using (Pen lanePen = new Pen(Color.FromArgb(50, Color.Black), 2))
-        //    {
-        //        for (int i = 1; i < TotalLanes; i++)
-        //        {
-        //            float y = i * laneHeight;
-        //            g.DrawLine(lanePen, 0, y, PlayArea.Width, y);
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// WinForms gọi khi cần vẽ → copy back-buffer ra màn hình
@@ -438,8 +420,8 @@ namespace BTLT04
 
         private void btnGuide_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Nhiệm vụ của bản là bảo vể bản thân và không cho zombie tấn công nhà bạn!\n" +
-             "W/S/D/A: lên/xuống/trái phải \n" +
+            MessageBox.Show("Nhiệm vụ của bạn là bảo vệ bản thân và không cho zombie tấn công nhà bạn!\n" +
+             "W/S/D/A: lên/xuống/trái/phải \n" +
              "Q/E: kích hoạt kĩ năng tấn công \n",
              "Hướng dẫn", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
